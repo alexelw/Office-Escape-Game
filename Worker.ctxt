@@ -1,7 +1,12 @@
 #BlueJ class context
 comment0.target=Worker
-comment0.text=\n\ Write\ a\ description\ of\ class\ Worker\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
-comment1.params=
-comment1.target=void\ act()
-comment1.text=\n\ Act\ -\ do\ whatever\ the\ Worker\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
-numComments=2
+comment0.text=\n\ Abstract\ class\ for\ worker\ actors\n\ \n\ @author\ Alex\ Watts\ \n\ @version\ 1.0\n
+comment1.params=movement
+comment1.target=Worker(IMovement)
+comment2.params=speedChange
+comment2.target=void\ updateSpeed(int)
+comment3.params=collectible
+comment3.target=void\ applyEffectFromCollectible(Collectible)
+comment4.params=
+comment4.target=void\ move()
+numComments=5

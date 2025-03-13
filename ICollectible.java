@@ -1,11 +1,12 @@
+import greenfoot.*;
 /**
- * Collectible interface for Collectible actors
+ * Interface for Collectible actors
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Alex Watts
+ * @version 1.0
  */
 public interface ICollectible  
 {
-    // Method signature for applying effect on an actor
-    void applyAffect(Collectible collectible);
+    // Method signature for applying effect of the collectible to a worker
+    void applyEffectToWorker(Worker worker);
 }

@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=ICollectible
+comment0.text=\n\ Interface\ for\ Collectible\ actors\n\ \n\ @author\ Alex\ Watts\n\ @version\ 1.0\n
+comment1.params=worker
+comment1.target=void\ applyEffectToWorker(Worker)
+numComments=2

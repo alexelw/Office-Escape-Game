@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=IWorker
+comment0.text=\n\ Interface\ for\ worker\ actors\n\ \n\ @author\ Alex\ Watts\ \n\ @version\ 1.0\n
+comment1.params=speedChange
+comment1.target=void\ updateSpeed(int)
+comment2.params=collectible
+comment2.target=void\ applyEffectFromCollectible(Collectible)
+comment3.params=worker
+comment3.target=void\ interactWith(Worker)
+comment4.params=
+comment4.target=void\ move()
+numComments=5
