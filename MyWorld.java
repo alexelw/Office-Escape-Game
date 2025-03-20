@@ -12,9 +12,14 @@ public class MyWorld extends World {
     private static final int WORLD_HEIGHT = 400;
 
     public MyWorld() {
+        // Initialize the world with a specific width and height
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
+
+        TiredOfficeWorker worker = new TiredOfficeWorker();
+        addObject(worker, 300, 200);
+
     }
-    
+
     public void removeCollectibleFromWorld(Collectible collectible) {
         removeObject(collectible);
     }

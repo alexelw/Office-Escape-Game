@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=CoWorker
+comment0.text=\n\ Write\ a\ description\ of\ class\ CoWorker\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=pointA\ pointB
+comment1.target=CoWorker(Point,\ Point)
+comment2.params=
+comment2.target=void\ move()
+comment3.params=worker
+comment3.target=void\ interactWith(Worker)
+numComments=4

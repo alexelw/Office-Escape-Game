@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=TiredOfficeWorker
+comment0.text=\n\ Write\ a\ description\ of\ class\ TiredOfficeWorker\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=TiredOfficeWorker()
+comment2.params=energyChange
+comment2.target=void\ updateEnergy(int)
+comment3.params=
+comment3.target=int\ getEnergy()
+comment4.params=
+comment4.target=void\ updateSpeed()
+comment5.params=
+comment5.target=void\ move()
+comment6.params=worker
+comment6.target=void\ interactWith(Worker)
+comment7.params=
+comment7.target=void\ act()
+comment8.params=
+comment8.target=void\ regenerateEnergy()
+numComments=9

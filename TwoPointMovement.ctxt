@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=TwoPointMovement
+comment0.text=\n\ Write\ a\ description\ of\ class\ TwoPointMovement\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=pointA\ pointB
+comment1.target=TwoPointMovement(Point,\ Point)
+comment2.params=worker
+comment2.target=void\ setWorker(Worker)
+comment3.params=
+comment3.target=void\ move()
+numComments=4
