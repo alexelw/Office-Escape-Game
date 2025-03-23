@@ -135,9 +135,6 @@ public class MyWorld extends World {
         addObject(new wall(), 350, 330);
         addObject(new wall(), 320, 330);
         addObject(new wall(), 290, 330);
-        addObject(new wall(), 20, 110);
-        addObject(new wall(), 20, 130);
-
         
     }
      //Collectible

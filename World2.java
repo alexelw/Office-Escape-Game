@@ -6,21 +6,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class World2 extends World
-{
-    private static final int WORLD_WIDTH = 600;
-    private static final int WORLD_HEIGHT = 400;
+public class World2 extends MyWorld {
+
     private static final int WALL_WIDTH = 28;
     private static final int WALL_HEIGHT = 26;
-    
+    /**
+     * Constructor for objects of class World2.
     /**
      * Constructor for objects of class World2.
      * 
      */
-    public World2()
-    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+    public World2() {  
+        
+        TiredOfficeWorker worker = new TiredOfficeWorker();
+        addObject(worker, 20, 250);
+        
+        layout();
+        placeCollectibles(); // Call method to place collectibles
+
     
     }
     
