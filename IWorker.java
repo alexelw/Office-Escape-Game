@@ -11,7 +11,7 @@ public interface IWorker
     void updateSpeed(int speedChange);
     
     // Method signature for applying effect from a collectible to a worker
-    void applyEffectFromCollectible(Collectible collectible);
+    void applyEffectToCollectible(Collectible collectible);
     
     // Method signature to handle interactions between workers
     void interactWith(Worker worker);

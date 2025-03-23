@@ -32,7 +32,7 @@ public abstract class Worker extends Actor implements IWorker {
     }
     
     // Applies the effect of a collectible to the worker and removes the collectible from the world.
-    public void applyEffectFromCollectible(Collectible collectible) {
+    public void applyEffectToCollectible(Collectible collectible) {
         collectible.applyEffectToWorker(this);  // Apply the specific effect from the collectible
         (collectible).removeFromWorld(); // Remove the collectible from the world
     }

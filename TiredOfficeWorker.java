@@ -13,7 +13,7 @@ public class TiredOfficeWorker extends Worker {
     private static final int SLOW_SPEED = 1;
     private static final int NO_SPEED = 0;
     //threshold for low energy to slow movement
-    private static final int LOW_ENERGY_THRESHOLD = 250;
+    private static final int LOW_ENERGY_THRESHOLD = 1000;
     //rate energy regenerates
     private static final int ENERGY_REGEN_RATE = 4;
 
@@ -21,7 +21,7 @@ public class TiredOfficeWorker extends Worker {
     
     public TiredOfficeWorker() {
         super(new WASDMovement());
-        this.energy = new Energy(1000);
+        this.energy = new Energy(2000);
         ((WASDMovement) movement).setWorker(this);
     }
 
@@ -58,7 +58,7 @@ public class TiredOfficeWorker extends Worker {
 
     @Override
     public void interactWith(Worker worker) {
-        // Interaction logic remains the same
+        // Interaction logic remains the sameapplyEffect
     }
 
     // Add the act method to control movement and other actions
