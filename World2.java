@@ -1,35 +1,30 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * Write a description of class World2 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World {
-    
+public class World2 extends World
+{
     private static final int WORLD_WIDTH = 600;
     private static final int WORLD_HEIGHT = 400;
     private static final int WALL_WIDTH = 28;
     private static final int WALL_HEIGHT = 26;
-
-    public MyWorld() {
-        // Initialize the world with a specific width and height
-        super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
-
-        TiredOfficeWorker worker = new TiredOfficeWorker();
-        addObject(worker, 20, 250);
-        
-        layout();
-        placeCollectibles(); // Call method to place collectibles
-
-    }
-
-    public void removeCollectibleFromWorld(Collectible collectible) {
-        removeObject(collectible);
+    
+    /**
+     * Constructor for objects of class World2.
+     * 
+     */
+    public World2()
+    {    
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        super(600, 400, 1); 
+    
     }
     
-    private void layout() {
+        private void layout() {
         // Create office-like maze walls (desks, partitions, etc.)
         
         // Top horizontal wall
@@ -135,9 +130,7 @@ public class MyWorld extends World {
         addObject(new wall(), 350, 330);
         addObject(new wall(), 320, 330);
         addObject(new wall(), 290, 330);
-        addObject(new wall(), 20, 110);
-        addObject(new wall(), 20, 130);
-
+        
         
     }
      //Collectible
@@ -149,22 +142,5 @@ public class MyWorld extends World {
         addObject(new CoffeeBoost(), 560, 40);
         
         }
-        
-        public void act() {
-        // Get the worker object in world1
-        TiredOfficeWorker worker = (TiredOfficeWorker) getObjects(TiredOfficeWorker.class).get(0);
-        
-        // Check if the worker has reached the target position
-        if ((worker.getX() == 20 && worker.getY() == 110) && (worker.getX() == 20 && worker.getY() == 130)) {
-        // Transition to the next world (Level 2)
-        Greenfoot.setWorld(new World2()); // Switch to Level 2
-        }
-    
-        
     }
-}
-
-    
-
-
 
