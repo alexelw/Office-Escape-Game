@@ -21,6 +21,7 @@ public class MyWorld extends World {
         addObject(worker, 300, 200);
         
         layout();
+        placeCollectibles(); // Call method to place collectibles
 
     }
 
@@ -135,7 +136,24 @@ public class MyWorld extends World {
         addObject(new wall(), 320, 330);
         addObject(new wall(), 290, 330);
         
+        
     }
-}
+     //Collectible
+    private void placeCollectibles() {
+        addObject(new CoffeeBoost(), 250, 150);
+        addObject(new CoffeeBoost(), 450, 300);
+        addObject(new CoffeeBoost(), 50, 350);
+        addObject(new CoffeeBoost(), 50, 200);
+        addObject(new CoffeeBoost(), 560, 40);
+        // Random y coordinate
+
+            CoffeeBoost coffeeBoost = new CoffeeBoost(); // Create new CoffeeBoost collectible
+          
+        }
+        
+    }
+
+    
+
 
 

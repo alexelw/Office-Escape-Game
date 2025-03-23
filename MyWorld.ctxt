@@ -7,4 +7,6 @@ comment2.params=collectible
 comment2.target=void\ removeCollectibleFromWorld(Collectible)
 comment3.params=
 comment3.target=void\ layout()
-numComments=4
+comment4.params=
+comment4.target=void\ placeCollectibles()
+numComments=5
