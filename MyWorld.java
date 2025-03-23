@@ -35,6 +35,21 @@ public class MyWorld extends World {
         for (int i = 0; i < 25; i++) {
             addObject(new wall(), 10 + i * WALL_WIDTH, 10);
         }
+        
+        // 2nd top horizontal wall
+        for (int i = 0; i < 15; i++) {
+            addObject(new wall(), 100 + i * WALL_WIDTH, 80);
+        }
+        
+        // 3rd top horizontal wall
+        for (int i = 0; i < 15; i++) {
+            addObject(new wall(), 100 + i * WALL_WIDTH, 270);
+        }
+        
+        // 4th horizontal wall
+        for (int i = 0; i < 3; i++) {
+            addObject(new wall(), 280 + i * WALL_WIDTH, 150);
+        }
 
         // 1st left vertical wall
         for (int i = 0; i < 3; i++) {
@@ -45,23 +60,60 @@ public class MyWorld extends World {
         for (int i = 0; i < 10; i++) {
             addObject(new wall(), 10, 160 + i * WALL_HEIGHT);
         }
-
+        
+        // 3rd vertical wall
+        for (int i = 0; i < 5; i++) {
+            addObject(new wall(), 100, 160 + i * WALL_HEIGHT);
+        }
+        
+        // 4th vertical wall
+        for (int i = 0; i < 4; i++) {
+            addObject(new wall(), 300, 170 + i * WALL_HEIGHT);
+        }
+        
         // Right vertical wall
         for (int i = 0; i < 15; i++) {
             addObject(new wall(), 590, 30 + i * WALL_HEIGHT);
         }
 
         // Bottom horizontal wall
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 12; i++) {
             addObject(new wall(), 10 + i * WALL_WIDTH, 390);
         }
+        
+        // Bottom horizontal wall 2
+        for (int i = 0; i < 10; i++) {
+            addObject(new wall(), 400 + i * WALL_WIDTH, 390);
+        }
 
-        // Create small desk areas to mimick office space
-        addObject(new wall(), 150, 100);
+        //small desk areas for office space
         addObject(new wall(), 178, 100);
-        addObject(new wall(), 206, 100);
-        addObject(new wall(), 206, 126);
-        addObject(new wall(), 206, 152);
+        addObject(new wall(), 178, 126);
+        addObject(new wall(), 178, 152);
+        addObject(new wall(), 207, 100);
+        addObject(new wall(), 207, 126);
+        addObject(new wall(), 207, 152);
+        
+        //small desk areas for office space
+        addObject(new wall(), 178, 300);
+        addObject(new wall(), 178, 326);
+        addObject(new wall(), 207, 300);
+        addObject(new wall(), 207, 326);
+        addObject(new wall(), 40, 160);
+        addObject(new wall(), 70, 160);
+        
+        
+        //small desk areas for office space
+        addObject(new wall(), 428, 100);
+        addObject(new wall(), 428, 126);
+        addObject(new wall(), 428, 152);
+        addObject(new wall(), 457, 100);
+        addObject(new wall(), 457, 126);
+        addObject(new wall(), 457, 152);
+        addObject(new wall(), 428, 178);
+        addObject(new wall(), 457, 178);
+        addObject(new wall(), 560, 200);
+        addObject(new wall(), 530, 200);
     }
 }
 
