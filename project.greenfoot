@@ -1,8 +1,9 @@
 #Greenfoot project file
 class.CoWorker.image=ppl2.png
-class.Collectible.image=button-blue.png
+class.Collectible.image=Screenshot\ 2025-03-18\ at\ 16.56\ Background\ Removed.38.png
 class.TiredOfficeWorker.image=ppl1.png
 class.Worker.image=ppl1.png
+class.deskchair.image=Screenshot\ 2025-03-18\ at\ 19.31.41.png
 class.wall.image=Screenshot\ 2025-03-18\ at\ 18.16.42.png
 dependency1.from=MyWorld
 dependency1.to=TiredOfficeWorker
@@ -180,5 +181,5 @@ target9.y=0
 version=3.1.0
 width=901
 world.lastInstantiated=MyWorld
-xPosition=354
-yPosition=214
+xPosition=120
+yPosition=141
