@@ -145,10 +145,7 @@ public class MyWorld extends World {
         addObject(new CoffeeBoost(), 50, 350);
         addObject(new CoffeeBoost(), 50, 200);
         addObject(new CoffeeBoost(), 560, 40);
-        // Random y coordinate
-
-            CoffeeBoost coffeeBoost = new CoffeeBoost(); // Create new CoffeeBoost collectible
-          
+        
         }
         
     }

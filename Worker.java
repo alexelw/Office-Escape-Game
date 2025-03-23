@@ -16,6 +16,7 @@ public abstract class Worker extends Actor implements IWorker {
             throw new IllegalArgumentException("Worker must be assigned a valid movement strategy.");
         }
         this.movement = movement;
+        
     }
     
     // Updates the speed of the worker
@@ -23,6 +24,7 @@ public abstract class Worker extends Actor implements IWorker {
         this.speed += speedChange;
     }
     
+    //get current speed
     public int getSpeed() {
         return speed;
     }
