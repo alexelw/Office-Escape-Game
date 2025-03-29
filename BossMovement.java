@@ -29,22 +29,22 @@ public class BossMovement implements IMovement {
         double distance = Math.hypot(dx, dy);
 
         // Normalize movement direction
-        double moveX = boss.getSpeed() * dx / distance;
-        double moveY = boss.getSpeed() * dy / distance;
+        double moveX = (dx / distance) * boss.getSpeed();
+        double moveY = (dy / distance) * boss.getSpeed();
 
-        // Determine potential new position
+        // Apply movement but ensure the boss doesn’t overshoot
         int newX = (int) (bossX + moveX);
         int newY = (int) (bossY + moveY);
 
-        // Check for walls in a more detailed area around the Boss
+        // Check for walls and adjust position if needed
         if (!isWallAround(newX, newY)) {
             boss.setLocation(newX, newY);
         } else {
-            // Try moving horizontally if there's no wall on the X axis
+            // If there’s a wall, try moving horizontally first
             if (!isWallAt(newX, bossY)) {
                 boss.setLocation(newX, bossY);
             }
-            // Try moving vertically if there's no wall on the Y axis
+            // If there’s a wall horizontally, try moving vertically
             else if (!isWallAt(bossX, newY)) {
                 boss.setLocation(bossX, newY);
             }
@@ -81,3 +81,5 @@ public class BossMovement implements IMovement {
         stopped = false;
     }
 }
+
+

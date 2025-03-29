@@ -28,7 +28,7 @@ public class Boss extends Worker {
         );
         bossMovement = new BossMovement(this, targetWorker);
         this.movement = bossMovement;
-        this.speed = 2; // Adjust speed if you want
+        this.speed = 1; // Adjust speed if you want
     }
 
     @Override

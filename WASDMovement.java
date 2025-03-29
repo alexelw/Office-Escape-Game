@@ -31,25 +31,41 @@ public class WASDMovement implements IMovement {
         moveInDirection("D", movementSpeed, 0);
     }
 
-    // Helper method to check for walls and move accordingly
     private void moveInDirection(String key, int dx, int dy) {
-        if (Greenfoot.isKeyDown(key)) {
-            int newX = worker.getX() + dx;
-            int newY = worker.getY() + dy;
-            // Check if there's a wall at the new location
-            if (!isWallAt(newX, newY)) {
-                worker.setLocation(newX, newY);
-                worker.updateEnergy(-5);  // Deduct energy for movement
-            }
+    if (Greenfoot.isKeyDown(key)) {
+        // Calculate the new position
+        int newX = worker.getX() + dx;
+        int newY = worker.getY() + dy;
+
+        // Check if the worker can move to the new position by checking a few key points around the worker
+        if (!isWallAt(newX, newY)) {
+            worker.setLocation(newX, newY);
+            worker.updateEnergy(-5);  // Deduct energy for movement
         }
     }
-    
-    // Returns true if there's a wall at (x, y)
-    private boolean isWallAt(int x, int y) {
-        World world = worker.getWorld();
-        if (world == null) return false;
-        return !world.getObjectsAt(x, y, wall.class).isEmpty();
+}
+
+// Check if the worker's bounding box collides with a wall at the target position
+private boolean isWallAt(int x, int y) {
+    World world = worker.getWorld();
+    if (world == null) return false;
+
+    // Check four key points around the worker's bounding box (edges and corners)
+    if (!world.getObjectsAt(x, y, wall.class).isEmpty()) {
+        return true;  // Check the exact center position
     }
+    if (!world.getObjectsAt(x + worker.getImage().getWidth() - 1, y, wall.class).isEmpty()) {
+        return true;  // Check the right edge
+    }
+    if (!world.getObjectsAt(x, y + worker.getImage().getHeight() - 1, wall.class).isEmpty()) {
+        return true;  // Check the bottom edge
+    }
+    if (!world.getObjectsAt(x + worker.getImage().getWidth() - 1, y + worker.getImage().getHeight() - 1, wall.class).isEmpty()) {
+        return true;  // Check the bottom-right corner
+    }
+
+    return false;
+}
 
     public void stopMoving() {
         isStopped = true;
