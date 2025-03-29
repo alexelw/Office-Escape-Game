@@ -31,13 +31,26 @@ public class WASDMovement implements IMovement {
         moveInDirection("D", movementSpeed, 0);
     }
 
-    // Helper method to move in one direction
+    // Helper method to check for walls and move accordingly
     private void moveInDirection(String key, int dx, int dy) {
         if (Greenfoot.isKeyDown(key)) {
-            worker.setLocation(worker.getX() + dx, worker.getY() + dy);
-            worker.updateEnergy(-5);  // Deduct energy for movement
+            int newX = worker.getX() + dx;
+            int newY = worker.getY() + dy;
+            // Check if there's a wall at the new location
+            if (!isWallAt(newX, newY)) {
+                worker.setLocation(newX, newY);
+                worker.updateEnergy(-5);  // Deduct energy for movement
+            }
         }
     }
+    
+    // Returns true if there's a wall at (x, y)
+    private boolean isWallAt(int x, int y) {
+        World world = worker.getWorld();
+        if (world == null) return false;
+        return !world.getObjectsAt(x, y, wall.class).isEmpty();
+    }
+
     public void stopMoving() {
         isStopped = true;
     }
@@ -47,5 +60,6 @@ public class WASDMovement implements IMovement {
         isStopped = false;
     }
 }
+
 
 

@@ -6,14 +6,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
+
 public class Boss extends Worker {
     private AnimationHandler animation;
-    private Worker targetWorker; 
-
+    private Worker targetWorker;
     private BossMovement bossMovement;
 
-    public Boss(Worker targetWorker) {
-        super(null); 
+    private boolean chatting = false;
+    private int chatTimer = 0;
+
+    public Boss(TiredOfficeWorker targetWorker) {
+        super(new DummyMovement()); // Temporary, replaced below
         this.targetWorker = targetWorker;
         this.animation = new AnimationHandler(this,
             "boss_idle.png",
@@ -25,21 +28,21 @@ public class Boss extends Worker {
         );
         bossMovement = new BossMovement(this, targetWorker);
         this.movement = bossMovement;
-        this.speed = 1;
+        this.speed = 2; // Adjust speed if you want
     }
 
     @Override
     public void move() {
-        movement.move();
-        // Example direction, you can modify it as needed
-        int moveDirectionX = 0;
-        int moveDirectionY = 0;
-        if (Greenfoot.isKeyDown("w")) moveDirectionY = -1;
-        if (Greenfoot.isKeyDown("s")) moveDirectionY = 1;
-        if (Greenfoot.isKeyDown("a")) moveDirectionX = -1;
-        if (Greenfoot.isKeyDown("d")) moveDirectionX = 1;
-
-        animation.animateWalking(moveDirectionX, moveDirectionY);
+        if (chatting) {
+            animation.animateTalking();
+        } else {
+            movement.move();
+            int dx = targetWorker.getX() - this.getX();
+            int dy = targetWorker.getY() - this.getY();
+            int moveDirectionX = (dx < 0) ? -1 : (dx > 0) ? 1 : 0;
+            int moveDirectionY = (dy < 0) ? -1 : (dy > 0) ? 1 : 0;
+            animation.animateWalking(moveDirectionX, moveDirectionY);
+        }
     }
 
     @Override
@@ -48,13 +51,38 @@ public class Boss extends Worker {
             Greenfoot.stop();
             System.out.println("GAME OVER! The boss caught you.");
         }
+        if (worker instanceof CoWorker && intersects(worker)) {
+            if (!chatting) {
+                startChatWithCoWorker();
+            }
+        }
+    }
+
+    private void startChatWithCoWorker() {
+        chatting = true;
+        chatTimer = 100;
+        stopMovement();
     }
 
     @Override
     public void act() {
+        CoWorker coworker = (CoWorker) getOneIntersectingObject(CoWorker.class);
+        if (coworker != null) {
+            interactWith(coworker);
+        }
+        interactWith(targetWorker);
+
+        if (chatting) {
+            if (chatTimer > 0) {
+                chatTimer--;
+            } else {
+                chatting = false;
+                resumeMovement();
+            }
+        }
+
         move();
         checkForCoffee();
-        interactWith(targetWorker);
     }
 
     private void checkForCoffee() {
@@ -63,5 +91,18 @@ public class Boss extends Worker {
             applyEffectToCollectible(coffee);
         }
     }
-}
 
+    @Override
+    public void stopMovement() {
+        if (bossMovement != null) {
+            bossMovement.stopMoving();
+        }
+    }
+
+    @Override
+    public void resumeMovement() {
+        if (bossMovement != null) {
+            bossMovement.resumeMoving();
+        }
+    }
+}

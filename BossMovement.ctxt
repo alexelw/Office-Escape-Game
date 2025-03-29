@@ -2,9 +2,13 @@
 comment0.target=BossMovement
 comment0.text=\n\ Write\ a\ description\ of\ class\ BossMovement\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=boss\ target
-comment1.target=BossMovement(Boss,\ Worker)
+comment1.target=BossMovement(Boss,\ TiredOfficeWorker)
 comment2.params=
 comment2.target=void\ move()
 comment3.params=x\ y
 comment3.target=boolean\ isWallAt(int,\ int)
-numComments=4
+comment4.params=
+comment4.target=void\ stopMoving()
+comment5.params=
+comment5.target=void\ resumeMoving()
+numComments=6

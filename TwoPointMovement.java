@@ -1,3 +1,4 @@
+import greenfoot.*;
 /**
  * Write a description of class TwoPointMovement here.
  * 
