@@ -55,6 +55,17 @@ public void move() {
 }
 
 
+
+    public int getDx() {
+        int xTarget = movingToPointB ? pointB.x : pointA.x;
+        return Integer.compare(xTarget, worker.getX());
+    }
+    
+    public int getDy() {
+        int yTarget = movingToPointB ? pointB.y : pointA.y;
+        return Integer.compare(yTarget, worker.getY());
+    }
+
     // Method to stop the movement
     public void stopMoving() {
         isStopped = true;

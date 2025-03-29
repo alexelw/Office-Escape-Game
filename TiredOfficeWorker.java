@@ -6,6 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Alex Watts
  * version 1.1
  */
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class TiredOfficeWorker extends Worker {
     private Energy energy;
@@ -15,9 +16,9 @@ public class TiredOfficeWorker extends Worker {
     private static final int LOW_ENERGY_THRESHOLD = 1000;
     private static final int ENERGY_REGEN_RATE = 4;
     private boolean chatting = false;
-    
+
     private AnimationHandler animation;
-    
+
     public TiredOfficeWorker() {
         super(new WASDMovement());
         this.energy = new Energy(2000);
@@ -25,24 +26,22 @@ public class TiredOfficeWorker extends Worker {
 
         animation = new AnimationHandler(this,
             "worker_idle.png",
-            new String[]{"worker_walk1.png", "worker_walk2.png"},
+            new String[]{"worker_walkL1.png", "worker_walkL2.png"},
+            new String[]{"worker_walkR1.png", "worker_walkR2.png"},
             new String[]{"worker_effect1.png", "worker_effect2.png"},
             new String[]{"worker_talk1.png", "worker_talk2.png"},
             32, 32
         );
+    }
 
-     }
-
-         
     public void setChatting(boolean chatting) {
         this.chatting = chatting;
     }
-    
+
     public void animateTalking() {
         chatting = true;
         animation.animateTalking();
     }
-
 
     public void updateEnergy(int energyChange) {
         energy.changeEnergy(energyChange);
@@ -56,7 +55,7 @@ public class TiredOfficeWorker extends Worker {
     public Energy getEnergyObject() {
         return energy;
     }
-    
+
     private void updateSpeed() {
         int currentEnergy = energy.getCurrentEnergy();
         int speed;
@@ -73,8 +72,7 @@ public class TiredOfficeWorker extends Worker {
 
     @Override
     public void move() {
-        // Only move if not in chat and if energy allows movement
-        if (energy.getCurrentEnergy() > 0 ) {
+        if (energy.getCurrentEnergy() > 0) {
             movement.move();
         }
     }
@@ -89,26 +87,29 @@ public class TiredOfficeWorker extends Worker {
         } else if (worker instanceof Boss) {
             animation.animateTalking();
         }
-}
-
+    }
 
     public void act() {
         move();
         regenerateEnergy();
-        handleAnimation(); // Update chat interaction state
+        handleAnimation();
     }
 
     private void handleAnimation() {
         if (chatting) {
             animation.animateTalking();
-        } else if (Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("a") ||
-            Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("d")) {
-            animation.animateWalking();
         } else {
-            animation.resetToIdle();
+            // Send movement direction to animation handler
+            int moveDirectionX = 0;
+            int moveDirectionY = 0;
+            if (Greenfoot.isKeyDown("w")) moveDirectionY = -1;
+            if (Greenfoot.isKeyDown("s")) moveDirectionY = 1;
+            if (Greenfoot.isKeyDown("a")) moveDirectionX = -1;
+            if (Greenfoot.isKeyDown("d")) moveDirectionX = 1;
+
+            animation.animateWalking(moveDirectionX, moveDirectionY);
         }
     }
-
 
     private void regenerateEnergy() {
         if (energy.getCurrentEnergy() < energy.getMaxEnergy()) {
@@ -118,8 +119,8 @@ public class TiredOfficeWorker extends Worker {
 
     @Override
     public void stopMovement() {
-        setSpeed(0); // Prevent movement
-        ((WASDMovement) movement).stopMoving(); // Stop WASD movement
+        setSpeed(0); 
+        ((WASDMovement) movement).stopMoving(); 
     }
 
     @Override
@@ -128,6 +129,5 @@ public class TiredOfficeWorker extends Worker {
         updateSpeed();
         ((WASDMovement) movement).resumeMoving();
     }
-    
-
 }
+

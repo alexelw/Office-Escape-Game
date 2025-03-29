@@ -8,10 +8,8 @@ import java.util.List;
  */
 public class CoWorker extends Worker {
     private static final int SPEED = 2;
-
     private final Point pointA;
-    private final Point pointB; // Use shared chat interaction logic
-
+    private final Point pointB;
     private AnimationHandler animation;
     private boolean chatting = false;
 
@@ -22,16 +20,16 @@ public class CoWorker extends Worker {
         this.pointA = pointA;
         this.pointB = pointB;
         setSpeed(SPEED);
-        
+
+        // Provide two sets: up-left images and down-right images.
         animation = new AnimationHandler(this,
             "coworker_idle.png",
-            new String[]{"coworker_walk1.png", "coworker_walk2.png"},
+            new String[]{"coworker_walkL1.png", "coworker_walkL2.png"},   // For up-left movement
+            new String[]{"coworker_walkR1.png", "coworker_walkR2.png"},   // For down-right movement
             new String[]{"coworker_effect1.png", "coworker_effect2.png"},
             new String[]{"coworker_talk1.png", "coworker_talk2.png"},
             32, 32
         );
-
-
     }
 
     @Override
@@ -44,30 +42,32 @@ public class CoWorker extends Worker {
         }
     }
 
-    
-        public void setChatting(boolean chatting) {
+    public void setChatting(boolean chatting) {
         this.chatting = chatting;
     }
-    
+
     public void animateTalking() {
         chatting = true;
         animation.animateTalking();
     }
-    
+
     @Override
     public void resumeMovement() {
         chatting = false;
         ((TwoPointMovement) movement).resumeMoving();
     }
-    
+
     private void handleAnimation() {
         if (chatting) {
             animation.animateTalking();
         } else {
-            animation.animateWalking(); // Coworker is always moving
+            // Use the direction from TwoPointMovement:
+            TwoPointMovement tm = (TwoPointMovement) movement;
+            int moveDirectionX = tm.getDx();
+            int moveDirectionY = tm.getDy();
+            animation.animateWalking(moveDirectionX, moveDirectionY);
         }
     }
-
 
     @Override
     public void interactWith(Worker worker) {
@@ -78,7 +78,6 @@ public class CoWorker extends Worker {
             }
         }
     }
-
 
     @Override
     public void stopMovement() {

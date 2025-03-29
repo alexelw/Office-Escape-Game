@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=AnimationHandler
-comment1.params=worker\ idle\ walking\ effect\ talking\ scaleWidth\ scaleHeight
-comment1.target=AnimationHandler(Worker,\ java.lang.String,\ java.lang.String[],\ java.lang.String[],\ java.lang.String[],\ int,\ int)
-comment2.params=
-comment2.target=void\ animateWalking()
+comment1.params=worker\ idle\ walkingUpLeft\ walkingDownRight\ effect\ talking\ scaleWidth\ scaleHeight
+comment1.target=AnimationHandler(Worker,\ java.lang.String,\ java.lang.String[],\ java.lang.String[],\ java.lang.String[],\ java.lang.String[],\ int,\ int)
+comment2.params=moveDirectionX\ moveDirectionY
+comment2.target=void\ animateWalking(int,\ int)
 comment3.params=
 comment3.target=void\ animateEffect()
 comment4.params=
