@@ -5,7 +5,6 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-
 public class BossMovement implements IMovement {
     private Boss boss;
     private TiredOfficeWorker target;
@@ -37,23 +36,35 @@ public class BossMovement implements IMovement {
         int newX = (int) (bossX + moveX);
         int newY = (int) (bossY + moveY);
 
-        // Improved wall check: Check more points around the boss for collision
-        if (!isWallAt(newX, bossY) && !isWallAt(bossX, newY)) {
-            // Move boss if there are no walls in both horizontal and vertical directions
+        // Check for walls in a more detailed area around the Boss
+        if (!isWallAround(newX, newY)) {
             boss.setLocation(newX, newY);
         } else {
-            // Try horizontal movement if no wall is blocking on X-axis
+            // Try moving horizontally if there's no wall on the X axis
             if (!isWallAt(newX, bossY)) {
                 boss.setLocation(newX, bossY);
-            } 
-            // Try vertical movement if no wall is blocking on Y-axis
+            }
+            // Try moving vertically if there's no wall on the Y axis
             else if (!isWallAt(bossX, newY)) {
                 boss.setLocation(bossX, newY);
             }
         }
     }
 
-    // Improved wall detection to avoid clipping
+    // Enhanced wall detection: Check a larger area around the Boss to simulate its full size
+    private boolean isWallAround(int newX, int newY) {
+        int bossSize = 32; // Assuming the Boss has a width and height of 32 pixels
+        for (int i = -bossSize; i <= bossSize; i++) {
+            for (int j = -bossSize; j <= bossSize; j++) {
+                if (isWallAt(newX + i, newY + j)) {
+                    return true; // Wall detected around the new position
+                }
+            }
+        }
+        return false;
+    }
+
+    // Standard wall detection method
     private boolean isWallAt(int x, int y) {
         World world = boss.getWorld();
         if (world == null) return false;

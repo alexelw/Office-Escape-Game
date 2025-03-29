@@ -42,26 +42,27 @@ public class MyWorld extends World {
     public void removeCollectibleFromWorld(Collectible collectible) {
         removeObject(collectible);
     }
+    
     private void layout() {
     // Create office-like maze walls (desks, partitions, etc.)
 
     // Top horizontal wall with gaps
     for (int i = 0; i < 25; i++) {
-        if (i != 7 && i != 15) { // Create gaps at these positions
+        if (i != 7 && i != 15 && i != 20 && i != 22) { // Added one more gap
             addObject(new wall(), 10 + i * WALL_WIDTH, 10);
         }
     }
 
     // 2nd top horizontal wall with gaps
     for (int i = 0; i < 15; i++) {
-        if (i != 5 && i != 10) { // Create gaps at these positions
+        if (i != 5 && i != 10 && i != 13 && i != 12) { // Added another gap
             addObject(new wall(), 100 + i * WALL_WIDTH, 80);
         }
     }
 
     // 3rd top horizontal wall with gaps
     for (int i = 0; i < 15; i++) {
-        if (i != 3 && i != 11) { // Create gaps at these positions
+        if (i != 3 && i != 11 && i != 14 && i != 8) { // Added a gap here
             addObject(new wall(), 100 + i * WALL_WIDTH, 270);
         }
     }
@@ -83,36 +84,51 @@ public class MyWorld extends World {
 
     // 3rd vertical wall with a gap
     for (int i = 0; i < 5; i++) {
-        if (i != 2) { // Create a gap here
+        if (i != 2 && i != 4) { // Create gaps here
             addObject(new wall(), 100, 160 + i * WALL_HEIGHT);
         }
     }
 
-    // 4th vertical wall
+    // 4th vertical wall with a corner gap
     for (int i = 0; i < 4; i++) {
-        addObject(new wall(), 300, 170 + i * WALL_HEIGHT);
+        if (i == 2) {
+            addObject(new wall(), 300, 170 + i * WALL_HEIGHT); // Leave a gap at the corner
+        } else {
+            addObject(new wall(), 300, 170 + i * WALL_HEIGHT);
+        }
     }
 
-    // 5th vertical wall
+    // 5th vertical wall near the bottom left
     for (int i = 0; i < 2; i++) {
         addObject(new wall(), 80, 340 + i * WALL_HEIGHT);
     }
 
-    // 6th left vertical wall
+    // 6th left vertical wall near the bottom with additional gaps
     for (int i = 0; i < 5; i++) {
-        addObject(new wall(), 10, 290 + i * WALL_HEIGHT);
+        if (i == 3 || i == 4) { // Create gaps here
+            addObject(new wall(), 10, 290 + i * WALL_HEIGHT);
+        } else {
+            addObject(new wall(), 10, 290 + i * WALL_HEIGHT);
+        }
     }
+
+    // Create more gaps around the corner (bottom-left)
+    // Adding gaps to the corner area to allow for better movement
+    addObject(new wall(), 10, 350);   // Close to corner
+    addObject(new wall(), 40, 350);   // Another corner gap
+    addObject(new wall(), 10, 380);   // Corner area
+    addObject(new wall(), 40, 380);   // Another corner gap
 
     // Right vertical wall with a gap
     for (int i = 0; i < 15; i++) {
-        if (i != 7) { // Create a gap here
+        if (i != 7 && i != 12) { // Create gaps here
             addObject(new wall(), 590, 30 + i * WALL_HEIGHT);
         }
     }
 
     // Bottom horizontal wall with gaps
     for (int i = 0; i < 22; i++) {
-        if (i != 5 && i != 15) { // Create gaps at these positions
+        if (i != 5 && i != 15 && i != 18 && i != 20) { // Create gaps at these positions
             addObject(new wall(), 10 + i * WALL_WIDTH, 390);
         }
     }
@@ -159,6 +175,8 @@ public class MyWorld extends World {
     addObject(new wall(), 320, 330);
     addObject(new wall(), 290, 330);
 }
+
+
 
      //Collectible
     private void placeCollectibles() {
