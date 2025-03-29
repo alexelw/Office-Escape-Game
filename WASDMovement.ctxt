@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=WASDMovement
-comment0.text=\n\ Write\ a\ description\ of\ class\ WASDWMovemement\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\n\ Movement\ class\ for\ using\ WASD\n\ \n\ Alex\ watts\ \n\ version\ 1.1\n
 comment1.params=
 comment1.target=WASDMovement()
 comment2.params=worker

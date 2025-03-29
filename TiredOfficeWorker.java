@@ -18,11 +18,21 @@ public class TiredOfficeWorker extends Worker {
     private static final int ENERGY_REGEN_RATE = 4;
 
     private boolean isMoving = false;
+    private AnimationHandler animation;
+
     
     public TiredOfficeWorker() {
         super(new WASDMovement());
         this.energy = new Energy(2000);
         ((WASDMovement) movement).setWorker(this);
+        
+        animation = new AnimationHandler(this,
+            "worker_idle.png",
+            new String[]{"worker_walk1.png", "worker_walk2.png"},
+            new String[]{"worker_effect1.png", "worker_effect2.png"},
+            new String[]{"worker_talk1.png", "worker_talk2.png"},
+            32,32
+        );
     }
 
     public void updateEnergy(int energyChange) {
@@ -48,6 +58,9 @@ public class TiredOfficeWorker extends Worker {
         setSpeed(speed);
     }
 
+    public Energy getEnergyObject() {
+        return energy;
+    }
     
     @Override
     public void move() {
@@ -58,18 +71,41 @@ public class TiredOfficeWorker extends Worker {
 
     @Override
     public void interactWith(Worker worker) {
-        // Interaction logic remains the sameapplyEffect
+    if (worker instanceof TiredOfficeWorker) {
+        animation.animateTalking(); // Coworker talks to coworker
+    } else if (worker instanceof Boss) {
+        animation.animateTalking(); // Coworker talks to boss
     }
+}
+
 
     // Add the act method to control movement and other actions
     public void act() {
-        move();  // Handle movement logic
-        regenerateEnergy();  // Energy regeneration
+        move();
+        regenerateEnergy();
+        handleAnimation();
     }
     
-    private void regenerateEnergy() {
-        if (energy.getCurrentEnergy() < energy.getMaxEnergy()) {
-            energy.restoreEnergy(ENERGY_REGEN_RATE);
+        private void handleAnimation() {
+        if (isMoving()) {
+            animation.animateWalking();
+        } else {
+            animation.resetToIdle();
         }
     }
+    
+        private boolean isMoving() {
+        return Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("a")
+            || Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("d");
+    }
+        private void regenerateEnergy() {
+            if (energy.getCurrentEnergy() < energy.getMaxEnergy()) {
+                energy.restoreEnergy(ENERGY_REGEN_RATE);
+            }
+        }
+        
+        public void applyEffectToWorker() {
+            animation.animateEffect(); // Animate special effect
+        }
+        
 }

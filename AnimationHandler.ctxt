@@ -1,12 +1,13 @@
 #BlueJ class context
 comment0.target=AnimationHandler
-comment0.text=\n\ Write\ a\ description\ of\ class\ AnimationHandler\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
-comment1.params=worker\ idle\ walking\ effect
-comment1.target=AnimationHandler(Worker,\ java.lang.String,\ java.lang.String[],\ java.lang.String[])
+comment1.params=worker\ idle\ walking\ effect\ talking\ scaleWidth\ scaleHeight
+comment1.target=AnimationHandler(Worker,\ java.lang.String,\ java.lang.String[],\ java.lang.String[],\ java.lang.String[],\ int,\ int)
 comment2.params=
 comment2.target=void\ animateWalking()
 comment3.params=
 comment3.target=void\ animateEffect()
 comment4.params=
-comment4.target=void\ resetToIdle()
-numComments=5
+comment4.target=void\ animateTalking()
+comment5.params=
+comment5.target=void\ resetToIdle()
+numComments=6

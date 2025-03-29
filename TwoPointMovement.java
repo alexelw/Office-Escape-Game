@@ -9,6 +9,7 @@ public class TwoPointMovement implements IMovement {
     private final Point pointB;
     private Worker worker;  // Changed from CoWorker to Worker
     private boolean movingToPointB;
+    private boolean isStopped = false;
 
     public TwoPointMovement(Point pointA, Point pointB) {
         this.pointA = pointA;
@@ -23,7 +24,7 @@ public class TwoPointMovement implements IMovement {
 
     @Override
     public void move() {
-        if (worker == null) return;
+        if (worker == null || isStopped) return; // Stop movement if isStopped is true
 
         int xTarget = movingToPointB ? pointB.x : pointA.x;
         int yTarget = movingToPointB ? pointB.y : pointA.y;
@@ -38,5 +39,15 @@ public class TwoPointMovement implements IMovement {
         if (worker.getX() == xTarget && worker.getY() == yTarget) {
             movingToPointB = !movingToPointB;
         }
+    }
+
+    // Method to stop the movement
+    public void stopMoving() {
+        isStopped = true;
+    }
+
+    // Method to resume movement
+    public void resumeMoving() {
+        isStopped = false;
     }
 }

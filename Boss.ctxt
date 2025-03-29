@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Boss
+comment0.text=\n\ Write\ a\ description\ of\ class\ Boss\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=targetWorker
+comment1.target=Boss(Worker)
+comment2.params=
+comment2.target=void\ move()
+comment3.params=worker
+comment3.target=void\ interactWith(Worker)
+comment4.params=
+comment4.target=void\ act()
+comment5.params=
+comment5.target=void\ checkForCoffee()
+numComments=6

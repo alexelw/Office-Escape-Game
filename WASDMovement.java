@@ -1,9 +1,9 @@
 import greenfoot.*;
 /**
- * Write a description of class WASDWMovemement here.
+ * Movement class for using WASD
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Alex watts 
+ * version 1.1
  */
 
 public class WASDMovement implements IMovement {

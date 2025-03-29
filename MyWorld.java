@@ -20,7 +20,13 @@ public class MyWorld extends World {
         TiredOfficeWorker worker = new TiredOfficeWorker();
         addObject(worker, 20, 250);
         
+        Point pointA = new Point(50, 100);
+        Point pointB = new Point(550, 100);
+        CoWorker coworker = new CoWorker(pointA, pointB);
+        addObject(coworker, pointA.x, pointA.y); 
+        
         layout();
+        
         placeCollectibles(); // Call method to place collectibles
 
     }
@@ -150,13 +156,9 @@ public class MyWorld extends World {
         public void act() {
         // Get the worker object in world1
         TiredOfficeWorker worker = (TiredOfficeWorker) getObjects(TiredOfficeWorker.class).get(0);
+        EnergyBar bar = new EnergyBar(worker, 100, 10); // width & height of the bar
+        addObject(bar, getWidth() - 60, getHeight() - 20); // bottom right
         
-        // Check if the worker has reached the target position
-        if ((worker.getX() == 20 && worker.getY() == 110) && (worker.getX() == 20 && worker.getY() == 130)) {
-        // Transition to the next world (Level 2)
-        Greenfoot.setWorld(new World2()); // Switch to Level 2
-        }
-    
         
     }
 }
