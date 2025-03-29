@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=ChatHandler
+comment0.text=\n\ Write\ a\ description\ of\ class\ ChatInteraction\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=worker\ coworker
+comment1.target=void\ startChat(TiredOfficeWorker,\ CoWorker)
+comment2.params=
+comment2.target=void\ update()
+comment3.params=
+comment3.target=void\ endChat()
+comment4.params=
+comment4.target=boolean\ isChatActive()
+comment5.params=
+comment5.target=boolean\ isChatOnCooldown()
+numComments=6

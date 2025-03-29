@@ -12,7 +12,9 @@ public class MyWorld extends World {
     private static final int WORLD_HEIGHT = 400;
     private static final int WALL_WIDTH = 28;
     private static final int WALL_HEIGHT = 26;
-
+    private ChatHandler chatHandler;
+    private EnergyBar bar;
+    
     public MyWorld() {
         // Initialize the world with a specific width and height
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
@@ -21,14 +23,17 @@ public class MyWorld extends World {
         addObject(worker, 20, 250);
         
         Point pointA = new Point(50, 100);
-        Point pointB = new Point(550, 100);
+        Point pointB = new Point(400, 100);
         CoWorker coworker = new CoWorker(pointA, pointB);
-        addObject(coworker, pointA.x, pointA.y); 
+        addObject(coworker, pointA.x, pointA.y);
         
+        chatHandler = new ChatHandler();
         layout();
         
         placeCollectibles(); // Call method to place collectibles
 
+        bar = new EnergyBar(worker, 100, 10);
+        addObject(bar, getWidth() - 60, getHeight() - 20);
     }
 
     public void removeCollectibleFromWorld(Collectible collectible) {
@@ -153,14 +158,15 @@ public class MyWorld extends World {
         
         }
         
+        public ChatHandler getChatHandler() {
+        return chatHandler;
+    }
+
         public void act() {
-        // Get the worker object in world1
-        TiredOfficeWorker worker = (TiredOfficeWorker) getObjects(TiredOfficeWorker.class).get(0);
-        EnergyBar bar = new EnergyBar(worker, 100, 10); // width & height of the bar
-        addObject(bar, getWidth() - 60, getHeight() - 20); // bottom right
-        
+        chatHandler.update();
         
     }
+    
 }
 
     

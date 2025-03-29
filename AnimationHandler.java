@@ -12,6 +12,7 @@ public class AnimationHandler {
     private boolean isEffectActive = false;
     private boolean isTalking = false; 
 
+    
     public AnimationHandler(Worker worker, String idle, String[] walking, String[] effect,String[] talking, int scaleWidth, int scaleHeight) {
         this.worker = worker;
 

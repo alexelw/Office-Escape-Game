@@ -8,7 +8,8 @@ import greenfoot.*;
 
 public class WASDMovement implements IMovement {
     private TiredOfficeWorker worker;
-
+    private boolean isStopped = false;
+    
     public WASDMovement() {
     }
 
@@ -19,7 +20,7 @@ public class WASDMovement implements IMovement {
 
     @Override
     public void move() {
-        if (worker == null || worker.getEnergy() <= 0) return;
+        if (worker == null || worker.getEnergy() <= 0 || isStopped) return;
 
         int movementSpeed = worker.getSpeed();
         
@@ -36,6 +37,14 @@ public class WASDMovement implements IMovement {
             worker.setLocation(worker.getX() + dx, worker.getY() + dy);
             worker.updateEnergy(-5);  // Deduct energy for movement
         }
+    }
+    public void stopMoving() {
+        isStopped = true;
+    }
+
+    // Resume movement
+    public void resumeMoving() {
+        isStopped = false;
     }
 }
 

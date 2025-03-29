@@ -18,21 +18,17 @@ public abstract class Worker extends Actor implements IWorker {
         this.movement = movement;
         
     }
-    
     // Updates the speed of the worker
     public void updateSpeed(int speedChange) {
         this.speed += speedChange;
     }
-    
     //get current speed
     public int getSpeed() {
         return speed;
     }
-    
     public void setSpeed(int speed) {
         this.speed = Math.max(0, speed);
     }
-    
     // Applies the effect of a collectible to the worker and removes the collectible from the world.
     public void applyEffectToCollectible(Collectible collectible) {
         collectible.applyEffectToWorker(this);  // Apply the specific effect from the collectible
@@ -44,4 +40,12 @@ public abstract class Worker extends Actor implements IWorker {
     
     // Abstract method for the worker to move
     public abstract void move();  // Each worker will have its own movement
+    // Stop movement (to be overridden by subclasses)
+    public void stopMovement() {
+        // Default empty implementation
+    }
+    // Resume movement (to be overridden by subclasses)
+    public void resumeMovement() {
+        // Default empty implementation
+    }
 }

@@ -7,7 +7,7 @@
 public class TwoPointMovement implements IMovement {
     private final Point pointA;
     private final Point pointB;
-    private Worker worker;  // Changed from CoWorker to Worker
+    private Worker worker;
     private boolean movingToPointB;
     private boolean isStopped = false;
 
@@ -16,6 +16,7 @@ public class TwoPointMovement implements IMovement {
         this.pointB = pointB;
         this.movingToPointB = true;
     }
+    
 
     // Set the worker that will move
     public void setWorker(Worker worker) {
@@ -23,23 +24,36 @@ public class TwoPointMovement implements IMovement {
     }
 
     @Override
-    public void move() {
-        if (worker == null || isStopped) return; // Stop movement if isStopped is true
+public void move() {
+    if (worker == null || isStopped) return; // Stop movement if isStopped is true
 
-        int xTarget = movingToPointB ? pointB.x : pointA.x;
-        int yTarget = movingToPointB ? pointB.y : pointA.y;
+    int xTarget = movingToPointB ? pointB.x : pointA.x;
+    int yTarget = movingToPointB ? pointB.y : pointA.y;
 
-        // Move towards the target point
-        if (worker.getX() < xTarget) worker.setLocation(worker.getX() + 1, worker.getY());
-        if (worker.getX() > xTarget) worker.setLocation(worker.getX() - 1, worker.getY());
-        if (worker.getY() < yTarget) worker.setLocation(worker.getX(), worker.getY() + 1);
-        if (worker.getY() > yTarget) worker.setLocation(worker.getX(), worker.getY() - 1);
+    // Print current and target positions for debugging
+    System.out.println("Worker position: (" + worker.getX() + ", " + worker.getY() + ")");
+    System.out.println("Target position: (" + xTarget + ", " + yTarget + ")");
 
-        // Once reached the target point, reverse direction
-        if (worker.getX() == xTarget && worker.getY() == yTarget) {
-            movingToPointB = !movingToPointB;
-        }
+    // Move towards the target point
+    if (worker.getX() < xTarget) {
+        worker.setLocation(worker.getX() + 1, worker.getY());  // Move right
     }
+    if (worker.getX() > xTarget) {
+        worker.setLocation(worker.getX() - 1, worker.getY());  // Move left
+    }
+    if (worker.getY() < yTarget) {
+        worker.setLocation(worker.getX(), worker.getY() + 1);  // Move down
+    }
+    if (worker.getY() > yTarget) {
+        worker.setLocation(worker.getX(), worker.getY() - 1);  // Move up
+    }
+
+    // Once reached the target point, reverse direction
+    if (worker.getX() == xTarget && worker.getY() == yTarget) {
+        movingToPointB = !movingToPointB;
+    }
+}
+
 
     // Method to stop the movement
     public void stopMoving() {

@@ -6,54 +6,57 @@ import java.util.List;
  * @author (your name) 
  * @version (a version number or a date)
  */
-
 public class CoWorker extends Worker {
     private static final int SPEED = 2;
-    private static final int CHAT_DURATION = 100;
-
-    private int chatTimer = 0;
-    private boolean isInChat = false;
 
     private final Point pointA;
-    private final Point pointB;
+    private final Point pointB; // Use shared chat interaction logic
 
     public CoWorker(Point pointA, Point pointB) {
         super(new TwoPointMovement(pointA, pointB));
+        ((TwoPointMovement) movement).setWorker(this);
+
         this.pointA = pointA;
         this.pointB = pointB;
         setSpeed(SPEED);
+
     }
 
     @Override
-    public void move() {
-        if (isInChat) {
-            if (chatTimer > 0) {
-                chatTimer--;
-            } else {
-                isInChat = false;
-            }
-        } else {
-            movement.move();
+    public void act() {
+        move();
+
+        TiredOfficeWorker worker = (TiredOfficeWorker) getOneIntersectingObject(TiredOfficeWorker.class);
+        if (worker != null) {
+            interactWith(worker);
         }
+    }
+
+    @Override
+    public void resumeMovement() {
+        setSpeed(SPEED);
+        ((TwoPointMovement) movement).resumeMoving();
     }
 
     @Override
     public void interactWith(Worker worker) {
-        if (worker instanceof TiredOfficeWorker && !isInChat) {
-            isInChat = true;
-            chatTimer = CHAT_DURATION;
-            stopMovement();
+        if (worker instanceof TiredOfficeWorker) {
+            MyWorld world = (MyWorld) getWorld();
+            if (!world.getChatHandler().isChatActive() && !world.getChatHandler().isChatOnCooldown()) {
+                world.getChatHandler().startChat((TiredOfficeWorker) worker, this);
+            }
         }
     }
-    
-    private void stopMovement() {
-        // Stop the coworker from moving
+
+
+    @Override
+    public void stopMovement() {
         ((TwoPointMovement) movement).stopMoving();
     }
 
-    public void endChat() {
-        isInChat = false;
-        chatTimer = 0;
+    @Override
+    public void move() {
+        movement.move(); 
     }
 }
 
