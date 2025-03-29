@@ -21,121 +21,78 @@ public class World2 extends MyWorld {
         TiredOfficeWorker worker = new TiredOfficeWorker();
         addObject(worker, 20, 250);
         
-        layout();
+        layout2();
         placeCollectibles(); // Call method to place collectibles
 
     
     }
     
-        private void layout() {
-        // Create office-like maze walls (desks, partitions, etc.)
-        
-        // Top horizontal wall
-        for (int i = 0; i < 25; i++) {
-            addObject(new wall(), 10 + i * WALL_WIDTH, 10);
-        }
-        
-        // 2nd top horizontal wall
-        for (int i = 0; i < 15; i++) {
-            addObject(new wall(), 100 + i * WALL_WIDTH, 80);
-        }
-        
-        // 3rd top horizontal wall
-        for (int i = 0; i < 15; i++) {
-            addObject(new wall(), 100 + i * WALL_WIDTH, 270);
-        }
-        
-        // 4th horizontal wall
-        for (int i = 0; i < 3; i++) {
-            addObject(new wall(), 280 + i * WALL_WIDTH, 150);
-        }
+        private void layout2() {
+    // Alternative office-like maze layout
 
-        // 1st left vertical wall
-        for (int i = 0; i < 3; i++) {
-            addObject(new wall(), 10, 30 + i * WALL_HEIGHT);
-        }
-        
-        // 2nd left vertical wall
-        for (int i = 0; i < 3; i++) {
-            addObject(new wall(), 10, 160 + i * WALL_HEIGHT);
-        }
-        
-        // 3rd vertical wall
-        for (int i = 0; i < 5; i++) {
-            addObject(new wall(), 100, 160 + i * WALL_HEIGHT);
-        }
-        
-        // 4th vertical wall
-        for (int i = 0; i < 4; i++) {
-            addObject(new wall(), 300, 170 + i * WALL_HEIGHT);
-        }
-        
-        // 5th vertical wall
-        for (int i = 0; i < 2; i++) {
-            addObject(new wall(), 80, 340 + i * WALL_HEIGHT);
-        }
-        
-        // 6th left vertical wall
-        for (int i = 0; i < 5; i++) {
-            addObject(new wall(), 10, 290 + i * WALL_HEIGHT);
-        }
-        
-        // Right vertical wall
-        for (int i = 0; i < 15; i++) {
-            addObject(new wall(), 590, 30 + i * WALL_HEIGHT);
-        }
-
-        // Bottom horizontal wall
-        for (int i = 0; i < 22; i++) {
-            addObject(new wall(), 10 + i * WALL_WIDTH, 390);
-        }
-        
-        
-        //small desk areas for office space
-        addObject(new wall(), 178, 100);
-        addObject(new wall(), 178, 126);
-        addObject(new wall(), 178, 152);
-        addObject(new wall(), 207, 100);
-        addObject(new wall(), 207, 126);
-        addObject(new wall(), 207, 152);
-        addObject(new deskchair(), 178, 178);
-        addObject(new deskchair(), 207, 178);
-        
-        //small desk areas for office space
-        addObject(new wall(), 178, 300);
-        addObject(new wall(), 178, 326);
-        addObject(new wall(), 207, 300);
-        addObject(new wall(), 207, 326);
-        addObject(new wall(), 40, 160);
-        addObject(new wall(), 70, 160);
-        
-        
-        //small desk areas for office space
-        addObject(new wall(), 428, 100);
-        addObject(new wall(), 428, 126);
-        addObject(new wall(), 428, 152);
-        addObject(new wall(), 457, 100);
-        addObject(new wall(), 457, 126);
-        addObject(new wall(), 457, 152);
-        addObject(new wall(), 428, 178);
-        addObject(new wall(), 457, 178);
-        addObject(new wall(), 560, 170);
-        addObject(new wall(), 530, 170);
-        addObject(new deskchair(), 530, 200);
-        addObject(new deskchair(), 560, 200);
-        
-        //small desk areas for office space
-        addObject(new wall(), 500, 330);
-        addObject(new wall(), 470, 330);
-        addObject(new wall(), 440, 330);
-        addObject(new wall(), 410, 330);
-        addObject(new wall(), 380, 330);
-        addObject(new wall(), 350, 330);
-        addObject(new wall(), 320, 330);
-        addObject(new wall(), 290, 330);
-        
-        
+    // Top horizontal wall
+    for (int i = 0; i < 24; i++) {
+        addObject(new wall(), 10 + i * WALL_WIDTH, 10);
     }
+
+    // Bottom horizontal wall
+    for (int i = 0; i < 20; i++) {
+        addObject(new wall(), 30 + i * WALL_WIDTH, 390);
+    }
+
+    // Left vertical wall
+    for (int i = 0; i < 14; i++) {
+        addObject(new wall(), 10, 30 + i * WALL_HEIGHT);
+    }
+
+    // Right vertical wall
+    for (int i = 0; i < 14; i++) {
+        addObject(new wall(), 590, 30 + i * WALL_HEIGHT);
+    }
+
+    // Center vertical wall
+    for (int i = 0; i < 6; i++) {
+        addObject(new wall(), 300, 70 + i * WALL_HEIGHT);
+    }
+
+    // Left middle horizontal wall
+    for (int i = 0; i < 5; i++) {
+        addObject(new wall(), 100 + i * WALL_WIDTH, 200);
+    }
+
+    // Right middle horizontal wall
+    for (int i = 0; i < 5; i++) {
+        addObject(new wall(), 370 + i * WALL_WIDTH, 200);
+    }
+
+    // Left-side corner desk area
+    addObject(new wall(), 150, 100);
+    addObject(new wall(), 150, 126);
+    addObject(new wall(), 180, 100);
+    addObject(new wall(), 180, 126);
+    addObject(new deskchair(), 165, 150);
+
+    // Right-side corner desk area
+    addObject(new wall(), 450, 100);
+    addObject(new wall(), 480, 100);
+    addObject(new wall(), 450, 126);
+    addObject(new wall(), 480, 126);
+    addObject(new deskchair(), 465, 150);
+
+    // Bottom left desk area
+    addObject(new wall(), 100, 300);
+    addObject(new wall(), 130, 300);
+    addObject(new wall(), 100, 326);
+    addObject(new wall(), 130, 326);
+    addObject(new deskchair(), 115, 350);
+
+    // Bottom right desk area
+    addObject(new wall(), 470, 300);
+    addObject(new wall(), 500, 300);
+    addObject(new wall(), 470, 326);
+    addObject(new wall(), 500, 326);
+    addObject(new deskchair(), 485, 350);
+}
      //Collectible
     private void placeCollectibles() {
         addObject(new CoffeeBoost(), 250, 150);
