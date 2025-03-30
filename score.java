@@ -1,37 +1,45 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class score here.
+ * Score Class - Displays and updates the player's score.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Olivia-Melody Adenyin
+ * @version 1.2
  */
-public class score extends Actor
-{
-    /**
-     * Act - do whatever the score wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    private int score = 0;  // The score variable
+public class Score extends Actor {
+    // Score tracking variable
+    private int score = 0;  
 
-    public score() {
+    /**
+     * Constructor - Initializes the score display.
+     */
+    public Score() {
         updateImage();
     }
 
-    // Method to increase score
+    /**
+     * Adds points to the score and updates the display.
+     * 
+     * @param points The number of points to add.
+     */
     public void addScore(int points) {
         score += points;
         updateImage();
     }
 
-    // Updates the displayed score
+    /**
+     * Returns the current score.
+     * 
+     * @return The current score value.
+     */
+    public int getScore() {
+        return score;
+    }    
+
+    /**
+     * Updates the displayed score.
+     */
     private void updateImage() {
         setImage(new GreenfootImage("Score: " + score, 24, Color.WHITE, Color.BLACK));
     }
-    
-    public int getScore() {
-    return score;
-    }    
-        
 }
-

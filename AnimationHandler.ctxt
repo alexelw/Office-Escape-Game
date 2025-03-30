@@ -1,13 +1,22 @@
 #BlueJ class context
 comment0.target=AnimationHandler
+comment0.text=\n\ Handles\ animations\ for\ the\ Worker\ character.\n\ \n\ @author\ Alex\ Watts\n\ @version\ 1.3\n
 comment1.params=worker\ idle\ walkingUpLeft\ walkingDownRight\ effect\ talking\ scaleWidth\ scaleHeight
 comment1.target=AnimationHandler(Worker,\ java.lang.String,\ java.lang.String[],\ java.lang.String[],\ java.lang.String[],\ java.lang.String[],\ int,\ int)
+comment1.text=\n\ Initializes\ animation\ images\ and\ sets\ idle\ state.\n
 comment2.params=moveDirectionX\ moveDirectionY
 comment2.target=void\ animateWalking(int,\ int)
+comment2.text=\n\ Animates\ walking\ based\ on\ movement\ direction.\n
 comment3.params=
 comment3.target=void\ animateEffect()
+comment3.text=\n\ Plays\ an\ effect\ animation.\n
 comment4.params=
 comment4.target=void\ animateTalking()
+comment4.text=\n\ Animates\ talking\ motion.\n
 comment5.params=
 comment5.target=void\ resetToIdle()
-numComments=6
+comment5.text=\n\ Resets\ animation\ to\ idle\ state.\n
+comment6.params=filenames\ width\ height
+comment6.target=greenfoot.GreenfootImage[]\ loadScaledImages(java.lang.String[],\ int,\ int)
+comment6.text=\n\ Loads\ and\ scales\ an\ array\ of\ images.\n
+numComments=7

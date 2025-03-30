@@ -1,15 +1,14 @@
 import greenfoot.*;
-/**
- * Write a description of class DummyMovement here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 
+/**
+ * A movement class that does nothing (used for stationary actors).
+ * 
+ * @author Alex Watts
+ * @version 1.2
+ */
 public class DummyMovement implements IMovement {
     @Override
     public void move() {
-        // Do nothing
+        // No movement behavior
     }
 }
-

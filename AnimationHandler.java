@@ -1,5 +1,12 @@
 import greenfoot.*;
 
+/**
+ * Handles animations for the Worker character.
+ * 
+ * @author Alex Watts
+ * @version 1.3
+ */
+
 public class AnimationHandler {
     private GreenfootImage[] walkingImagesUpLeft;
     private GreenfootImage[] walkingImagesDownRight;
@@ -13,7 +20,9 @@ public class AnimationHandler {
     private boolean isEffectActive = false;
     private boolean isTalking = false;
 
-    // Constructor now expects two sets for walking animations:
+    /**
+     * Initializes animation images and sets idle state.
+     */
     public AnimationHandler(Worker worker, String idle, 
             String[] walkingUpLeft, String[] walkingDownRight, 
             String[] effect, String[] talking, int scaleWidth, int scaleHeight) {
@@ -22,62 +31,38 @@ public class AnimationHandler {
         idleImage = new GreenfootImage(idle);
         idleImage.scale(scaleWidth, scaleHeight);
 
-        // Load and scale walking images for up-left movement
-        walkingImagesUpLeft = new GreenfootImage[walkingUpLeft.length];
-        for (int i = 0; i < walkingUpLeft.length; i++) {
-            walkingImagesUpLeft[i] = new GreenfootImage(walkingUpLeft[i]);
-            walkingImagesUpLeft[i].scale(scaleWidth, scaleHeight);
-        }
+        walkingImagesUpLeft = loadScaledImages(walkingUpLeft, scaleWidth, scaleHeight);
+        walkingImagesDownRight = loadScaledImages(walkingDownRight, scaleWidth, scaleHeight);
+        effectImages = loadScaledImages(effect, scaleWidth, scaleHeight);
+        talkingImages = loadScaledImages(talking, scaleWidth, scaleHeight);
 
-        // Load and scale walking images for down-right movement
-        walkingImagesDownRight = new GreenfootImage[walkingDownRight.length];
-        for (int i = 0; i < walkingDownRight.length; i++) {
-            walkingImagesDownRight[i] = new GreenfootImage(walkingDownRight[i]);
-            walkingImagesDownRight[i].scale(scaleWidth, scaleHeight);
-        }
-
-        // Load and scale effect images
-        effectImages = new GreenfootImage[effect.length];
-        for (int i = 0; i < effect.length; i++) {
-            effectImages[i] = new GreenfootImage(effect[i]);
-            effectImages[i].scale(scaleWidth, scaleHeight);
-        }
-
-        // Load and scale talking images
-        talkingImages = new GreenfootImage[talking.length];
-        for (int i = 0; i < talking.length; i++) {
-            talkingImages[i] = new GreenfootImage(talking[i]);
-            talkingImages[i].scale(scaleWidth, scaleHeight);
-        }
-        
-        // Set initial image
         worker.setImage(idleImage);
     }
 
-    // Animate walking using the two sets based on movement direction:
+    /**
+     * Animates walking based on movement direction.
+     */
     public void animateWalking(int moveDirectionX, int moveDirectionY) {
         if (!isEffectActive) {
             animationCounter++;
             if (animationCounter >= animationDelay) {
                 animationCounter = 0;
-                // If any key in the negative direction is pressed, use up-left set:
                 if (moveDirectionX < 0 || moveDirectionY < 0) {
                     animationFrame = (animationFrame + 1) % walkingImagesUpLeft.length;
                     worker.setImage(walkingImagesUpLeft[animationFrame]);
-                } 
-                // If any key in the positive direction is pressed, use down-right set:
-                else if (moveDirectionX > 0 || moveDirectionY > 0) {
+                } else if (moveDirectionX > 0 || moveDirectionY > 0) {
                     animationFrame = (animationFrame + 1) % walkingImagesDownRight.length;
                     worker.setImage(walkingImagesDownRight[animationFrame]);
-                } 
-                else {
+                } else {
                     resetToIdle();
                 }
             }
         }
     }
 
-
+    /**
+     * Plays an effect animation.
+     */
     public void animateEffect() {
         isEffectActive = true;
         animationCounter++;
@@ -88,6 +73,9 @@ public class AnimationHandler {
         }
     }
 
+    /**
+     * Animates talking motion.
+     */
     public void animateTalking() {
         isTalking = true;
         animationCounter++;
@@ -98,8 +86,24 @@ public class AnimationHandler {
         }
     }
 
+    /**
+     * Resets animation to idle state.
+     */
     public void resetToIdle() {
         isEffectActive = false;
+        isTalking = false;
         worker.setImage(idleImage);
+    }
+
+    /**
+     * Loads and scales an array of images.
+     */
+    private GreenfootImage[] loadScaledImages(String[] filenames, int width, int height) {
+        GreenfootImage[] images = new GreenfootImage[filenames.length];
+        for (int i = 0; i < filenames.length; i++) {
+            images[i] = new GreenfootImage(filenames[i]);
+            images[i].scale(width, height);
+        }
+        return images;
     }
 }

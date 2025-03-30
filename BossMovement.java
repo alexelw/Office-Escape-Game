@@ -1,36 +1,39 @@
 import greenfoot.*;
+
 /**
- * Write a description of class BossMovement here.
+ * Handles the movement logic for the Boss character.
+ * The Boss follows the TiredOfficeWorker while avoiding walls.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Alex Watts
+ * @version 1.2
  */
-import greenfoot.*;
 
 public class BossMovement implements IMovement {
     private Boss boss;
     private TiredOfficeWorker target;
     private boolean stopped = false;
 
+    /**
+     * Initializes the movement handler for the Boss.
+     */
     public BossMovement(Boss boss, TiredOfficeWorker target) {
         this.boss = boss;
         this.target = target;
     }
 
+    /**
+     * Moves the Boss towards the target while avoiding obstacles.
+     */
     @Override
     public void move() {
         if (stopped || boss == null || target == null) return;
 
-        int bossX = boss.getX();
-        int bossY = boss.getY();
-        int targetX = target.getX();
-        int targetY = target.getY();
-
-        int dx = targetX - bossX;
-        int dy = targetY - bossY;
+        int bossX = boss.getX(), bossY = boss.getY();
+        int targetX = target.getX(), targetY = target.getY();
+        int dx = targetX - bossX, dy = targetY - bossY;
         double distance = Math.hypot(dx, dy);
 
-        if (distance == 0) return; // Already at target position
+        if (distance == 0) return; // Already at the target position
 
         // Normalize movement direction
         int moveX = (int) Math.signum(dx) * boss.getSpeed();
@@ -40,28 +43,21 @@ public class BossMovement implements IMovement {
         boolean canMoveY = !isWallAt(bossX, bossY + moveY);
         boolean canMoveDiagonal = !isWallAt(bossX + moveX, bossY + moveY);
 
-        // Step 1: Move diagonally if possible
+        // Move priority: diagonal > vertical > horizontal > random
         if (canMoveDiagonal) {
             boss.setLocation(bossX + moveX, bossY + moveY);
-        }
-        // Step 2: If stuck against a vertical wall, move down until free
-        else if (!canMoveX && canMoveY) {
+        } else if (!canMoveX && canMoveY) {
             boss.setLocation(bossX, bossY + moveY);
-        }
-        // Step 3: If completely blocked by a vertical wall, force downward movement until free
-        else if (!canMoveX) {
+        } else if (!canMoveX) {
             if (!isWallAt(bossX, bossY + boss.getSpeed())) {
-                boss.setLocation(bossX, bossY + boss.getSpeed()); // Move down
+                boss.setLocation(bossX, bossY + boss.getSpeed());
             } else if (!isWallAt(bossX, bossY - boss.getSpeed())) {
-                boss.setLocation(bossX, bossY - boss.getSpeed()); // Move up as a backup
+                boss.setLocation(bossX, bossY - boss.getSpeed());
             }
-        }
-        // Step 4: If horizontal movement is possible, move that way
-        else if (canMoveX) {
+        } else if (canMoveX) {
             boss.setLocation(bossX + moveX, bossY);
-        }
-        // Step 5: Last resort - random movement to break out
-        else {
+        } else {
+            // Random movement to break out of stuck state
             int randomMove = (Greenfoot.getRandomNumber(2) == 0 ? -boss.getSpeed() : boss.getSpeed());
             if (!isWallAt(bossX, bossY + randomMove)) {
                 boss.setLocation(bossX, bossY + randomMove);
@@ -71,18 +67,25 @@ public class BossMovement implements IMovement {
         }
     }
 
+    /**
+     * Checks if a wall is present at the given coordinates.
+     */
     private boolean isWallAt(int x, int y) {
         World world = boss.getWorld();
         return world != null && !world.getObjectsAt(x, y, wall.class).isEmpty();
     }
 
+    /**
+     * Stops the Boss from moving.
+     */
     public void stopMoving() {
         stopped = true;
     }
 
+    /**
+     * Resumes the Boss's movement.
+     */
     public void resumeMoving() {
         stopped = false;
     }
 }
-
-

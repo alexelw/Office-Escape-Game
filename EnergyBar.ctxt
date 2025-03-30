@@ -1,10 +1,13 @@
 #BlueJ class context
 comment0.target=EnergyBar
-comment0.text=\n\ Write\ a\ description\ of\ class\ EnergyBar\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\n\ EnergyBar\ Class\ -\ Displays\ and\ updates\ the\ energy\ level\ of\ the\ TiredOfficeWorker.\n\ \n\ @author\ Olivia-Melody\ Adenyin\n\ @version\ 1.0\n
 comment1.params=worker\ width\ height
 comment1.target=EnergyBar(TiredOfficeWorker,\ int,\ int)
+comment1.text=\n\ Constructor\ -\ Initializes\ the\ energy\ bar.\n\ \n\ @param\ worker\ The\ TiredOfficeWorker\ whose\ energy\ is\ being\ tracked.\n\ @param\ width\ \ The\ width\ of\ the\ energy\ bar.\n\ @param\ height\ The\ height\ of\ the\ energy\ bar.\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\n\ Continuously\ updates\ the\ energy\ bar\ each\ frame.\n
 comment3.params=
 comment3.target=void\ updateBar()
+comment3.text=\n\ Updates\ the\ visual\ representation\ of\ the\ energy\ bar\ based\ on\ the\ worker's\ current\ energy.\n
 numComments=4

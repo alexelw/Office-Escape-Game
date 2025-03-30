@@ -1,8 +1,10 @@
 #BlueJ class context
 comment0.target=Collectible
-comment0.text=\n\ Abstract\ class\ for\ collectible\ actors\n\ \n\ @author\ Alex\ Watts\n\ @version\ 1.0\n
+comment0.text=\n\ Abstract\ class\ for\ collectible\ actors.\n\ This\ class\ defines\ the\ basic\ behavior\ for\ all\ collectible\ objects\ in\ the\ world.\n\ Each\ collectible\ has\ an\ effect\ on\ the\ worker\ when\ collected,\ and\ it\ can\ be\ removed\ from\ the\ world.\n\ \n\ @author\ Alex\ Watts\n\ @version\ 1.0\n
 comment1.params=worker
 comment1.target=void\ applyEffectToWorker(Worker)
+comment1.text=\n\ Abstract\ method\ to\ apply\ the\ effect\ of\ the\ collectible\ to\ the\ worker.\n\ Each\ subclass\ of\ Collectible\ should\ define\ its\ specific\ effect\ on\ the\ worker.\n\ \n\ @param\ worker\ the\ worker\ that\ interacts\ with\ the\ collectible\n
 comment2.params=
 comment2.target=void\ removeFromWorld()
+comment2.text=\n\ Removes\ this\ collectible\ from\ the\ world.\n\ Calls\ the\ method\ in\ the\ world\ to\ remove\ the\ collectible\ from\ the\ active\ objects.\n
 numComments=3

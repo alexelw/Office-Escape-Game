@@ -1,16 +1,22 @@
 #BlueJ class context
 comment0.target=Energy
-comment0.text=\n\ Write\ a\ description\ of\ class\ Energy\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\n\ Manages\ energy\ levels,\ including\ depletion\ and\ restoration.\n\ \n\ @author\ Alex\ Watts\n\ @version\ 1.2\n
 comment1.params=maxEnergy
 comment1.target=Energy(int)
+comment1.text=\n\ Initializes\ the\ energy\ system\ with\ a\ maximum\ energy\ value.\n
 comment2.params=amount
 comment2.target=void\ changeEnergy(int)
+comment2.text=\n\ Changes\ the\ current\ energy\ level\ within\ valid\ bounds.\n
 comment3.params=amount
 comment3.target=void\ restoreEnergy(int)
+comment3.text=\n\ Restores\ energy,\ ensuring\ it\ does\ not\ exceed\ the\ maximum.\n
 comment4.params=
 comment4.target=int\ getCurrentEnergy()
+comment4.text=\n\ Returns\ the\ current\ energy\ level.\n
 comment5.params=
 comment5.target=int\ getMaxEnergy()
+comment5.text=\n\ Returns\ the\ maximum\ energy\ capacity.\n
 comment6.params=
 comment6.target=boolean\ isEnergyDepleted()
+comment6.text=\n\ Checks\ if\ energy\ is\ fully\ depleted.\n
 numComments=7

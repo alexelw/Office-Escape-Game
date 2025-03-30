@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=ChatInteraction
+comment0.text=\n\ Write\ a\ description\ of\ class\ ChatInteraction\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=worker1\ worker2\ chatTime\ disableTime
+comment1.target=ChatInteraction(Worker,\ Worker,\ int,\ int)
+comment1.text=\n\ Initializes\ a\ chat\ interaction\ with\ timers.\n
+comment2.params=
+comment2.target=void\ update()
+comment2.text=\n\ Updates\ chat\ timers\ and\ animations.\n
+comment3.params=
+comment3.target=boolean\ isFinished()
+comment3.text=\n\ Checks\ if\ the\ chat\ has\ ended.\n
+comment4.params=
+comment4.target=boolean\ isCooldownOver()
+comment4.text=\n\ Checks\ if\ the\ cooldown\ period\ is\ over.\n
+comment5.params=
+comment5.target=void\ endChat()
+comment5.text=\n\ Ends\ the\ chat\ and\ resumes\ movement.\n
+comment6.params=w1\ w2
+comment6.target=boolean\ involves(Worker,\ Worker)
+comment6.text=\n\ Checks\ if\ this\ interaction\ involves\ the\ given\ workers.\n
+numComments=7

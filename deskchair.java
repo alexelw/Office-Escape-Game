@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class deskchair here.
  * 
- * @author (your name) 
+ * @Olivia-Melody Adenyin
  * @version (a version number or a date)
  */
 public class deskchair extends Actor

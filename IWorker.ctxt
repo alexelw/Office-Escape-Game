@@ -1,12 +1,25 @@
 #BlueJ class context
 comment0.target=IWorker
-comment0.text=\n\ Interface\ for\ worker\ actors\n\ \n\ @author\ Alex\ Watts\ \n\ @version\ 1.0\n
+comment0.text=\n\ Interface\ for\ worker\ actors\ in\ the\ game.\n\ \n\ Defines\ the\ required\ methods\ for\ worker-related\ behaviors\ like\ speed,\ interaction,\n\ applying\ collectible\ effects,\ movement,\ and\ managing\ movement\ state.\n\ \n\ @author\ Alex\ Watts\ \n\ @version\ 1.1\n
 comment1.params=speedChange
 comment1.target=void\ updateSpeed(int)
+comment1.text=\n\ Method\ signature\ for\ updating\ the\ speed\ of\ a\ worker.\n\ \n\ @param\ speedChange\ the\ change\ in\ speed\ (positive\ or\ negative)\n
 comment2.params=collectible
 comment2.target=void\ applyEffectToCollectible(Collectible)
+comment2.text=\n\ Method\ signature\ for\ applying\ the\ effect\ from\ a\ collectible\ to\ the\ worker.\n\ \n\ @param\ collectible\ the\ collectible\ that\ will\ affect\ the\ worker\n
 comment3.params=worker
 comment3.target=void\ interactWith(Worker)
+comment3.text=\n\ Method\ signature\ for\ handling\ interactions\ between\ workers.\n\ \n\ @param\ worker\ the\ other\ worker\ with\ which\ this\ worker\ will\ interact\n
 comment4.params=
 comment4.target=void\ move()
-numComments=5
+comment4.text=\n\ Method\ signature\ to\ move\ the\ worker.\n
+comment5.params=
+comment5.target=void\ stopMovement()
+comment5.text=\n\ Method\ signature\ to\ stop\ the\ worker's\ movement.\n\ \n\ Can\ be\ overridden\ by\ subclasses\ for\ specific\ stop\ behavior.\n
+comment6.params=
+comment6.target=void\ resumeMovement()
+comment6.text=\n\ Method\ signature\ to\ resume\ the\ worker's\ movement.\n\ \n\ Can\ be\ overridden\ by\ subclasses\ for\ specific\ resume\ behavior.\n
+comment7.params=
+comment7.target=void\ animateTalking()
+comment7.text=\n\ Method\ signature\ to\ animate\ the\ worker's\ talking\ state.\n\ \n\ Default\ implementation\ does\ nothing\ but\ can\ be\ overridden\ by\ subclasses.\n
+numComments=8

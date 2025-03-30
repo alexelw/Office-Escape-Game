@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=IMovement
-comment0.text=\n\ Interface\ for\ movement\ to\ be\ implemented\ by\ worker\ subclasses\n\ \n\ @author\ Alex\ Watts\n\ @version\ 1.0\n
+comment0.text=\n\ Interface\ for\ movement\ behavior,\ to\ be\ implemented\ by\ worker\ subclasses.\n\ \n\ @author\ Alex\ Watts\n\ @version\ 1.0\n
 comment1.params=
 comment1.target=void\ move()
 numComments=2

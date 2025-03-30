@@ -1,7 +1,10 @@
 #BlueJ class context
 comment0.target=CoffeeBoost
+comment0.text=\n\ Represents\ a\ CoffeeBoost\ collectible\ in\ the\ game.\n\ When\ collected,\ it\ restores\ the\ worker's\ energy\ and\ applies\ a\ speed\ boost.\n\ \n\ @Olivia-Melody\ Adenyin\n\ @version\ 1.2\n
 comment1.params=worker
 comment1.target=void\ applyEffectToWorker(Worker)
+comment1.text=\n\ Applies\ the\ effect\ of\ the\ CoffeeBoost\ to\ the\ worker.\n\ Restores\ the\ worker's\ energy\ and\ applies\ a\ speed\ boost.\n\ \n\ @param\ worker\ the\ worker\ who\ collects\ the\ CoffeeBoost\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\n\ The\ act\ method\ is\ called\ continuously\ in\ the\ game\ loop.\n\ Detects\ if\ a\ worker\ intersects\ with\ the\ CoffeeBoost\ and\ applies\ the\ effect.\n
 numComments=3

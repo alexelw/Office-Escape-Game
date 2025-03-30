@@ -1,43 +1,60 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class CoffeeBoost here.
+ * Represents a CoffeeBoost collectible in the game.
+ * When collected, it restores the worker's energy and applies a speed boost.
  * 
- * @author (your name) 
- * @version (a version number or a date)
- */import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+ * @Olivia-Melody Adenyin
+ * @version 1.2
+ */
 public class CoffeeBoost extends Collectible {
     
+    // Constant for the duration of the speed boost effect
     private static final int BOOST_DURATION = 180; 
     
+    /**
+     * Applies the effect of the CoffeeBoost to the worker.
+     * Restores the worker's energy and applies a speed boost.
+     * 
+     * @param worker the worker who collects the CoffeeBoost
+     */
     public void applyEffectToWorker(Worker worker) {
+        // Check if the worker is a TiredOfficeWorker
         if (worker instanceof TiredOfficeWorker) {
             TiredOfficeWorker tiredWorker = (TiredOfficeWorker) worker;
+            
             // Restore energy to full
             tiredWorker.updateEnergy(tiredWorker.getEnergyObject().getMaxEnergy() - tiredWorker.getEnergy());
-            // Apply speed boost for 3 seconds
+            
+            // Apply a speed boost for a duration of BOOST_DURATION
             tiredWorker.startSpeedBoost(BOOST_DURATION);
 
             // Update the score when the TiredOfficeWorker collects coffee
             MyWorld world = (MyWorld) getWorld();
             world.addPoints(10);  // Add 10 points to the score (adjust as needed)
-        } else if (worker instanceof Boss) {
+        } 
+        // Check if the worker is a Boss
+        else if (worker instanceof Boss) {
             Boss boss = (Boss) worker;
-            // Apply speed boost for 3 seconds
+            
+            // Apply a speed boost for the Boss as well
             boss.startSpeedBoost(BOOST_DURATION);
         }
         
-        removeFromWorld(); // Remove this collectible from the world after effect is applied
+        // Remove the CoffeeBoost from the world after the effect is applied
+        removeFromWorld();
     }
 
-    // Act method is called continuously
+    /**
+     * The act method is called continuously in the game loop.
+     * Detects if a worker intersects with the CoffeeBoost and applies the effect.
+     */
     public void act() {
-        // Detect if the worker touches this collectible
+        // Detect if a worker is touching this CoffeeBoost
         Worker worker = (Worker) getOneIntersectingObject(Worker.class);
         if (worker != null) {
-            applyEffectToWorker(worker); // Apply the boost effect
+            // Apply the effect to the worker if they intersect with the CoffeeBoost
+            applyEffectToWorker(worker);
         }
     }
 }
-

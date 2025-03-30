@@ -1,13 +1,19 @@
 #BlueJ class context
 comment0.target=BossMovement
+comment0.text=\n\ Handles\ the\ movement\ logic\ for\ the\ Boss\ character.\n\ The\ Boss\ follows\ the\ TiredOfficeWorker\ while\ avoiding\ walls.\n\ \n\ @author\ Alex\ Watts\n\ @version\ 1.2\n
 comment1.params=boss\ target
 comment1.target=BossMovement(Boss,\ TiredOfficeWorker)
+comment1.text=\n\ Initializes\ the\ movement\ handler\ for\ the\ Boss.\n
 comment2.params=
 comment2.target=void\ move()
+comment2.text=\n\ Moves\ the\ Boss\ towards\ the\ target\ while\ avoiding\ obstacles.\n
 comment3.params=x\ y
 comment3.target=boolean\ isWallAt(int,\ int)
+comment3.text=\n\ Checks\ if\ a\ wall\ is\ present\ at\ the\ given\ coordinates.\n
 comment4.params=
 comment4.target=void\ stopMoving()
+comment4.text=\n\ Stops\ the\ Boss\ from\ moving.\n
 comment5.params=
 comment5.target=void\ resumeMoving()
+comment5.text=\n\ Resumes\ the\ Boss's\ movement.\n
 numComments=6

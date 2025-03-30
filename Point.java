@@ -1,9 +1,10 @@
 import greenfoot.*;
+
 /**
- * Write a description of class Point here.
+ * Represents a 2D point with x and y coordinates.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Alex Watts
+ * @version 1.1
  */
 public class Point {
     public final int x;
