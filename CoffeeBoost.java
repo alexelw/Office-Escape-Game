@@ -9,9 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class CoffeeBoost extends Collectible {
     
-    private static final int BOOST_DURATION = 180; // 3 seconds at 60 FPS
-
-    // Apply effect to worker when collected
+    private static final int BOOST_DURATION = 180; 
+    
     public void applyEffectToWorker(Worker worker) {
         if (worker instanceof TiredOfficeWorker) {
             TiredOfficeWorker tiredWorker = (TiredOfficeWorker) worker;
@@ -22,7 +21,7 @@ public class CoffeeBoost extends Collectible {
 
             // Update the score when the TiredOfficeWorker collects coffee
             MyWorld world = (MyWorld) getWorld();
-            world.increaseScore(10);  // Add 10 points to the score (adjust as needed)
+            world.addPoints(10);  // Add 10 points to the score (adjust as needed)
         } else if (worker instanceof Boss) {
             Boss boss = (Boss) worker;
             // Apply speed boost for 3 seconds
