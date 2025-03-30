@@ -14,11 +14,15 @@ public class MyWorld extends World {
     private static final int WALL_HEIGHT = 26;
     private ChatHandler chatHandler;
     private EnergyBar bar;
+    private score scoreDisplay;
     
     public MyWorld() {
         // Initialize the world with a specific width and height
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
 
+        scoreDisplay = new score();
+        addObject(scoreDisplay, 80, 30);  // Position the score at the top-left
+        
         TiredOfficeWorker worker = new TiredOfficeWorker();
         addObject(worker, 20, 250);
         
@@ -39,6 +43,14 @@ public class MyWorld extends World {
         addObject(bar, getWidth() - 60, getHeight() - 20);
     }
 
+    public void addPoints(int points) {
+    scoreDisplay.addScore(points);
+    }
+    
+     public void increaseScore(int points) {
+        scoreDisplay.addScore(points);
+    }
+    
     public void removeCollectibleFromWorld(Collectible collectible) {
         removeObject(collectible);
     }

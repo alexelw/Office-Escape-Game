@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=score
+comment0.text=\n\ Write\ a\ description\ of\ class\ score\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=score()
+comment2.params=points
+comment2.target=void\ addScore(int)
+comment3.params=
+comment3.target=void\ updateImage()
+comment4.params=
+comment4.target=int\ getScore()
+numComments=5

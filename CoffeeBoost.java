@@ -12,6 +12,12 @@ public class CoffeeBoost extends Collectible {
     public void applyEffectToWorker(Worker worker) {
         worker.updateSpeed(2); // Increase worker speed by 2
         removeFromWorld(); // Remove this collectible from the world after effect is applied
+        
+        // Increase score
+        MyWorld world = (MyWorld) getWorld();
+        if (world != null) {
+            world.addPoints(10); // Increase score by 10
+        }
     }
 
     // Act method is called continuously
