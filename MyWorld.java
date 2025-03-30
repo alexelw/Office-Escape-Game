@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * MyWorld class for the office simulation game. a description of class MyWorld here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Alex and Olivia 
+ * @version 1.2
  */
 public class MyWorld extends World {
     
@@ -12,9 +12,12 @@ public class MyWorld extends World {
     private static final int WORLD_HEIGHT = 400;
     private static final int WALL_WIDTH = 28;
     private static final int WALL_HEIGHT = 26;
+    
     private ChatHandler chatHandler;
     private EnergyBar bar;
     private score scoreDisplay;
+    private boolean gameStarted = false;
+    private GreenfootImage messageImage;
     
     public MyWorld() {
         // Initialize the world with a specific width and height
@@ -26,12 +29,22 @@ public class MyWorld extends World {
         TiredOfficeWorker worker = new TiredOfficeWorker();
         addObject(worker, 20, 250);
         
-        Point pointA = new Point(50, 100);
-        Point pointB = new Point(400, 100);
+        Point pointA = new Point(25, 110);
+        Point pointB = new Point(125, 110);
         CoWorker coworker = new CoWorker(pointA, pointB);
         addObject(coworker, pointA.x, pointA.y);
         
-         Boss boss = new Boss(worker);
+        Point pointA2 = new Point(350, 210);
+        Point pointB2 = new Point(500, 210);
+        CoWorker coworker2 = new CoWorker(pointA2, pointB2);
+        addObject(coworker2, pointA2.x, pointA2.y);
+        
+        Point pointA3 = new Point(240, 40);
+        Point pointB3 = new Point(240, 150);
+        CoWorker coworker3 = new CoWorker(pointA3, pointB3);
+        addObject(coworker3, pointA3.x, pointA3.y);
+        
+        Boss boss = new Boss(worker);
         addObject(boss, 500, 300);
         
         chatHandler = new ChatHandler();
@@ -41,18 +54,41 @@ public class MyWorld extends World {
 
         bar = new EnergyBar(worker, 100, 10);
         addObject(bar, getWidth() - 60, getHeight() - 20);
+        
+        messageImage = new GreenfootImage(getWidth() - 220, getHeight());
+    }
+
+    private void showIntroMessage() {
+        messageImage.setColor(Color.WHITE);
+        messageImage.fillRect(20, 0, messageImage.getWidth(), messageImage.getHeight());
+        messageImage.setColor(Color.BLACK);
+        messageImage.drawString("Drink coffee to survive the workday avoiding extra work", 10, 25);  // Customize the position as needed
+        getBackground().drawImage(messageImage, (getWidth() - messageImage.getWidth()) / 2, getHeight() / 2);
     }
 
     public void addPoints(int points) {
-    scoreDisplay.addScore(points);
+        scoreDisplay.addScore(points);
     }
     
-     public void increaseScore(int points) {
+    public void increaseScore(int points) {
         scoreDisplay.addScore(points);
     }
     
     public void removeCollectibleFromWorld(Collectible collectible) {
         removeObject(collectible);
+    }
+    private void checkScore() {
+        if (scoreDisplay.getScore() >= 100) {
+            showSurvivalMessage();  // Show the message if score is 100 or more
+        }
+    }
+
+    private void showSurvivalMessage() {
+        messageImage.setColor(Color.WHITE);
+        messageImage.fillRect(0, 0, messageImage.getWidth(), messageImage.getHeight());
+        messageImage.setColor(Color.BLACK);
+        messageImage.drawString("You survived the work day!", 10, 25);  // Customize the position as needed
+        getBackground().drawImage(messageImage, (getWidth() - messageImage.getWidth()) / 2, getHeight() / 2);
     }
     
     private void layout() {
@@ -102,7 +138,7 @@ public class MyWorld extends World {
     }
 
     // 4th vertical wall with a corner gap
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 2; i++) {
         if (i == 2) {
             addObject(new wall(), 300, 170 + i * WALL_HEIGHT); // Leave a gap at the corner
         } else {
@@ -192,21 +228,28 @@ public class MyWorld extends World {
 
      //Collectible
     private void placeCollectibles() {
-        addObject(new CoffeeBoost(), 250, 150);
-        addObject(new CoffeeBoost(), 450, 300);
-        addObject(new CoffeeBoost(), 50, 350);
-        addObject(new CoffeeBoost(), 50, 200);
-        addObject(new CoffeeBoost(), 560, 40);
+    // Existing coffee boosts
+    addObject(new CoffeeBoost(), 250, 150);
+    addObject(new CoffeeBoost(), 450, 300);
+    addObject(new CoffeeBoost(), 50, 350);
+    addObject(new CoffeeBoost(), 50, 200);
+    addObject(new CoffeeBoost(), 560, 40);
+
+    // Additional coffee boosts
+    addObject(new CoffeeBoost(), 320, 120);
+    addObject(new CoffeeBoost(), 150, 250);
+    addObject(new CoffeeBoost(), 500, 100);
+    addObject(new CoffeeBoost(), 350, 300);
+    addObject(new CoffeeBoost(), 100, 50);
+}
         
-        }
-        
-        public ChatHandler getChatHandler() {
+    public ChatHandler getChatHandler() {
         return chatHandler;
     }
 
-        public void act() {
+    public void act() {
         chatHandler.update();
-        
+        showIntroMessage();
     }
     
 }

@@ -6,8 +6,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Alex Watts
  * version 1.1
  */
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 public class TiredOfficeWorker extends Worker {
     private Energy energy;
     private static final int NORMAL_SPEED = 2;
@@ -18,6 +16,8 @@ public class TiredOfficeWorker extends Worker {
     private boolean chatting = false;
 
     private AnimationHandler animation;
+    
+    private int speedBoostTimer = 0; // Timer for the speed boost
 
     public TiredOfficeWorker() {
         super(new WASDMovement());
@@ -67,6 +67,11 @@ public class TiredOfficeWorker extends Worker {
         } else {
             speed = NORMAL_SPEED;
         }
+        
+        if (speedBoostTimer > 0) {
+            speed = NORMAL_SPEED * 2; // Double speed during the boost
+        }
+
         setSpeed(speed);
     }
 
@@ -93,6 +98,7 @@ public class TiredOfficeWorker extends Worker {
         move();
         regenerateEnergy();
         handleAnimation();
+        handleSpeedBoost(); // Handle the speed boost timer
     }
 
     private void handleAnimation() {
@@ -129,5 +135,22 @@ public class TiredOfficeWorker extends Worker {
         updateSpeed();
         ((WASDMovement) movement).resumeMoving();
     }
+
+    // This method will handle the speed boost timer
+    private void handleSpeedBoost() {
+        if (speedBoostTimer > 0) {
+            speedBoostTimer--;
+            if (speedBoostTimer == 0) {
+                updateSpeed(); // Reset the speed after the boost duration
+            }
+        }
+    }
+
+    // Start speed boost timer for 3 seconds
+    public void startSpeedBoost(int duration) {
+        speedBoostTimer = duration;
+        updateSpeed();
+    }
 }
+
 

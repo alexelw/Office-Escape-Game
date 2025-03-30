@@ -30,11 +30,6 @@ public void move() {
 
     int xTarget = movingToPointB ? pointB.x : pointA.x;
     int yTarget = movingToPointB ? pointB.y : pointA.y;
-
-    // Print current and target positions for debugging
-    System.out.println("Worker position: (" + worker.getX() + ", " + worker.getY() + ")");
-    System.out.println("Target position: (" + xTarget + ", " + yTarget + ")");
-
     // Move towards the target point
     if (worker.getX() < xTarget) {
         worker.setLocation(worker.getX() + 1, worker.getY());  // Move right

@@ -77,6 +77,13 @@ public class CoWorker extends Worker {
                 world.getChatHandler().startChat((TiredOfficeWorker) worker, this);
             }
         }
+        else if (worker instanceof Boss) {
+        MyWorld world = (MyWorld) getWorld();
+        if (!world.getChatHandler().isChatActive() && !world.getChatHandler().isChatOnCooldown()) {
+            world.getChatHandler().startChat((Boss) worker, this);
+        }
+    }
+
     }
 
     @Override

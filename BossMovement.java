@@ -5,6 +5,8 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
+import greenfoot.*;
+
 public class BossMovement implements IMovement {
     private Boss boss;
     private TiredOfficeWorker target;
@@ -28,49 +30,50 @@ public class BossMovement implements IMovement {
         int dy = targetY - bossY;
         double distance = Math.hypot(dx, dy);
 
+        if (distance == 0) return; // Already at target position
+
         // Normalize movement direction
-        double moveX = (dx / distance) * boss.getSpeed();
-        double moveY = (dy / distance) * boss.getSpeed();
+        int moveX = (int) Math.signum(dx) * boss.getSpeed();
+        int moveY = (int) Math.signum(dy) * boss.getSpeed();
 
-        // Apply movement but ensure the boss doesn’t overshoot
-        int newX = (int) (bossX + moveX);
-        int newY = (int) (bossY + moveY);
+        boolean canMoveX = !isWallAt(bossX + moveX, bossY);
+        boolean canMoveY = !isWallAt(bossX, bossY + moveY);
+        boolean canMoveDiagonal = !isWallAt(bossX + moveX, bossY + moveY);
 
-        // Check for walls and adjust position if needed
-        if (!isWallAround(newX, newY)) {
-            boss.setLocation(newX, newY);
-        } else {
-            // If there’s a wall, try moving horizontally first
-            if (!isWallAt(newX, bossY)) {
-                boss.setLocation(newX, bossY);
+        // Step 1: Move diagonally if possible
+        if (canMoveDiagonal) {
+            boss.setLocation(bossX + moveX, bossY + moveY);
+        }
+        // Step 2: If stuck against a vertical wall, move down until free
+        else if (!canMoveX && canMoveY) {
+            boss.setLocation(bossX, bossY + moveY);
+        }
+        // Step 3: If completely blocked by a vertical wall, force downward movement until free
+        else if (!canMoveX) {
+            if (!isWallAt(bossX, bossY + boss.getSpeed())) {
+                boss.setLocation(bossX, bossY + boss.getSpeed()); // Move down
+            } else if (!isWallAt(bossX, bossY - boss.getSpeed())) {
+                boss.setLocation(bossX, bossY - boss.getSpeed()); // Move up as a backup
             }
-            // If there’s a wall horizontally, try moving vertically
-            else if (!isWallAt(bossX, newY)) {
-                boss.setLocation(bossX, newY);
+        }
+        // Step 4: If horizontal movement is possible, move that way
+        else if (canMoveX) {
+            boss.setLocation(bossX + moveX, bossY);
+        }
+        // Step 5: Last resort - random movement to break out
+        else {
+            int randomMove = (Greenfoot.getRandomNumber(2) == 0 ? -boss.getSpeed() : boss.getSpeed());
+            if (!isWallAt(bossX, bossY + randomMove)) {
+                boss.setLocation(bossX, bossY + randomMove);
+            } else if (!isWallAt(bossX + randomMove, bossY)) {
+                boss.setLocation(bossX + randomMove, bossY);
             }
         }
     }
 
-    // Enhanced wall detection: Check a larger area around the Boss to simulate its full size
-    private boolean isWallAround(int newX, int newY) {
-        int bossSize = 32; // Assuming the Boss has a width and height of 32 pixels
-        for (int i = -bossSize; i <= bossSize; i++) {
-            for (int j = -bossSize; j <= bossSize; j++) {
-                if (isWallAt(newX + i, newY + j)) {
-                    return true; // Wall detected around the new position
-                }
-            }
-        }
-        return false;
-    }
-
-    // Standard wall detection method
     private boolean isWallAt(int x, int y) {
         World world = boss.getWorld();
-        if (world == null) return false;
-
-        // Check if there are any walls at these positions
-        return !world.getObjectsAt(x, y, wall.class).isEmpty();
+        return world != null && !world.getObjectsAt(x, y, wall.class).isEmpty();
     }
 
     public void stopMoving() {

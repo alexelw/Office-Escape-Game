@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=TiredOfficeWorker
+comment0.text=\n\ tired\ office\ worker\ class\n\ \n\ Alex\ Watts\n\ version\ 1.1\n
 comment1.params=
 comment1.target=TiredOfficeWorker()
 comment10.params=
@@ -12,6 +13,10 @@ comment13.params=
 comment13.target=void\ stopMovement()
 comment14.params=
 comment14.target=void\ resumeMovement()
+comment15.params=
+comment15.target=void\ handleSpeedBoost()
+comment16.params=duration
+comment16.target=void\ startSpeedBoost(int)
 comment2.params=chatting
 comment2.target=void\ setChatting(boolean)
 comment3.params=
@@ -28,4 +33,4 @@ comment8.params=
 comment8.target=void\ move()
 comment9.params=worker
 comment9.target=void\ interactWith(Worker)
-numComments=15
+numComments=17

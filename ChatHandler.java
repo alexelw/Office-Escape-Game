@@ -5,7 +5,6 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-
 public class ChatHandler {
     private static final int CHAT_DURATION = 100;
     private static final int DISABLE_DURATION = 200;
@@ -17,6 +16,7 @@ public class ChatHandler {
 
     private TiredOfficeWorker worker;
     private CoWorker coworker;
+    private Boss boss; // Add the boss to handle chat
 
     public void startChat(TiredOfficeWorker worker, CoWorker coworker) {
         if (!chatActive && !chatCooldown) {
@@ -32,12 +32,28 @@ public class ChatHandler {
         }
     }
 
+    public void startChat(Boss boss, CoWorker coworker) {
+        if (!chatActive && !chatCooldown) {
+            this.boss = boss;
+            this.coworker = coworker;
+            chatTimer = CHAT_DURATION;
+            disableTimer = DISABLE_DURATION;
+            chatActive = true;
+            chatCooldown = true;
+
+            boss.stopMovement();
+            coworker.stopMovement();
+        }
+    }
+
     public void update() {
         if (chatActive) {
             if (chatTimer > 0) {
                 chatTimer--;
                 if (worker != null) {
                     worker.animateTalking();
+                } else if (boss != null) {
+                    boss.animateTalking();
                 }
             } else {
                 endChat();
@@ -55,8 +71,10 @@ public class ChatHandler {
         chatActive = false;
         if (worker != null) worker.resumeMovement();
         if (coworker != null) coworker.resumeMovement();
+        if (boss != null) boss.resumeMovement();
         worker = null;
         coworker = null;
+        boss = null;
     }
 
     public boolean isChatActive() {
@@ -67,4 +85,3 @@ public class ChatHandler {
         return chatCooldown;
     }
 }
-

@@ -1,16 +1,13 @@
 #BlueJ class context
 comment0.target=BossMovement
-comment0.text=\n\ Write\ a\ description\ of\ class\ BossMovement\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=boss\ target
 comment1.target=BossMovement(Boss,\ TiredOfficeWorker)
 comment2.params=
 comment2.target=void\ move()
-comment3.params=newX\ newY
-comment3.target=boolean\ isWallAround(int,\ int)
-comment4.params=x\ y
-comment4.target=boolean\ isWallAt(int,\ int)
+comment3.params=x\ y
+comment3.target=boolean\ isWallAt(int,\ int)
+comment4.params=
+comment4.target=void\ stopMoving()
 comment5.params=
-comment5.target=void\ stopMoving()
-comment6.params=
-comment6.target=void\ resumeMoving()
-numComments=7
+comment5.target=void\ resumeMoving()
+numComments=6

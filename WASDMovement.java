@@ -6,14 +6,15 @@ import greenfoot.*;
  * version 1.1
  */
 
+import greenfoot.*;
+
 public class WASDMovement implements IMovement {
     private TiredOfficeWorker worker;
     private boolean isStopped = false;
-    
+
     public WASDMovement() {
     }
 
-    // Set the actual worker after the worker object is created
     public void setWorker(TiredOfficeWorker worker) {
         this.worker = worker;
     }
@@ -22,56 +23,33 @@ public class WASDMovement implements IMovement {
     public void move() {
         if (worker == null || worker.getEnergy() <= 0 || isStopped) return;
 
-        int movementSpeed = worker.getSpeed();
-        
-        // Use a helper method for directional movement to reduce redundancy
-        moveInDirection("W", 0, -movementSpeed);
-        moveInDirection("S", 0, movementSpeed);
-        moveInDirection("A", -movementSpeed, 0);
-        moveInDirection("D", movementSpeed, 0);
-    }
+        int speed = worker.getSpeed();
+        int newX = worker.getX();
+        int newY = worker.getY();
 
-    private void moveInDirection(String key, int dx, int dy) {
-    if (Greenfoot.isKeyDown(key)) {
-        // Calculate the new position
-        int newX = worker.getX() + dx;
-        int newY = worker.getY() + dy;
+        if (Greenfoot.isKeyDown("W")) newY -= speed;
+        if (Greenfoot.isKeyDown("S")) newY += speed;
+        if (Greenfoot.isKeyDown("A")) newX -= speed;
+        if (Greenfoot.isKeyDown("D")) newX += speed;
 
-        // Check if the worker can move to the new position by checking a few key points around the worker
-        if (!isWallAt(newX, newY)) {
+        if (canMoveTo(newX, newY)) {
             worker.setLocation(newX, newY);
-            worker.updateEnergy(-5);  // Deduct energy for movement
+            worker.updateEnergy(-5);  // Deduct energy only if movement happens
         }
     }
-}
 
-// Check if the worker's bounding box collides with a wall at the target position
-private boolean isWallAt(int x, int y) {
-    World world = worker.getWorld();
-    if (world == null) return false;
+    private boolean canMoveTo(int x, int y) {
+        World world = worker.getWorld();
+        if (world == null) return false;
 
-    // Check four key points around the worker's bounding box (edges and corners)
-    if (!world.getObjectsAt(x, y, wall.class).isEmpty()) {
-        return true;  // Check the exact center position
+        // Less strict wall detection: Only checks the worker's approximate center
+        return world.getObjectsAt(x, y, wall.class).isEmpty();
     }
-    if (!world.getObjectsAt(x + worker.getImage().getWidth() - 1, y, wall.class).isEmpty()) {
-        return true;  // Check the right edge
-    }
-    if (!world.getObjectsAt(x, y + worker.getImage().getHeight() - 1, wall.class).isEmpty()) {
-        return true;  // Check the bottom edge
-    }
-    if (!world.getObjectsAt(x + worker.getImage().getWidth() - 1, y + worker.getImage().getHeight() - 1, wall.class).isEmpty()) {
-        return true;  // Check the bottom-right corner
-    }
-
-    return false;
-}
 
     public void stopMoving() {
         isStopped = true;
     }
 
-    // Resume movement
     public void resumeMoving() {
         isStopped = false;
     }

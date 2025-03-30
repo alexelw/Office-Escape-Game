@@ -21,6 +21,9 @@ public abstract class Worker extends Actor implements IWorker {
     // Updates the speed of the worker
     public void updateSpeed(int speedChange) {
         this.speed += speedChange;
+        if (this.speed < 1) {
+            this.speed = 1; // Ensure speed doesn't go below 1 (optional)
+        }
     }
     //get current speed
     public int getSpeed() {
