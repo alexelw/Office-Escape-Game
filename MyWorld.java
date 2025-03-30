@@ -199,7 +199,7 @@ public class MyWorld extends World {
      * Checks if the score has reached 100 and displays the survival message.
      */
     private void checkScore() {
-        if (scoreDisplay.getScore() >= 10) {
+        if (scoreDisplay.getScore() >= 100) {
             showSurvivalMessage();
         }
     }
